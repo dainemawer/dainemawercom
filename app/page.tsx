@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 		description:
 			"Daine Mawer is an Engineering Manager and Frontend Engineer, living in South Africa 🇿🇦",
 		url: "https://dainemawer.com/",
-	}
+	},
 };
 
 export default async function Home() {

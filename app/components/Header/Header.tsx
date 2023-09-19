@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, FC } from "react";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import Link from "next/link";
 
@@ -13,12 +13,12 @@ const Header: FC = () => {
 	const headerRef = useRef<HTMLElement>(null);
 	const drawerRef = useRef(null);
 	const buttonRef = useRef(null);
-	const pathname = usePathname()
+	const pathname = usePathname();
 
 	function handleClick() {
 		setIsDrawerOpen(!isDrawerOpen);
-		drawerRef.current?.classList.add('animating');
-		document.body.classList.toggle('drawer-open')
+		drawerRef.current?.classList.add("animating");
+		document.body.classList.toggle("drawer-open");
 	}
 
 	useEffect(() => {
@@ -40,25 +40,28 @@ const Header: FC = () => {
 		function handleEscapeClick(event: KeyboardEvent) {
 			if (event.key === "Escape") {
 				setIsDrawerOpen(false);
-				document.body.classList.remove('drawer-open')
+				document.body.classList.remove("drawer-open");
 			}
 		}
 
 		function handleClickOutside(event: MouseEvent) {
-			if (!drawerRef.current?.contains(event.target as Node) && !buttonRef.current?.contains(event.target as Node)) {
+			if (
+				!drawerRef.current?.contains(event.target as Node) &&
+				!buttonRef.current?.contains(event.target as Node)
+			) {
 				setIsDrawerOpen(false);
-				document.body.classList.remove('drawer-open')
+				document.body.classList.remove("drawer-open");
 			}
 		}
 
 		function handleTransitionEnd() {
-			drawerRef.current?.classList.remove('animating');
+			drawerRef.current?.classList.remove("animating");
 		}
 
 		window.addEventListener("scroll", activateStickyHeader);
 		document.addEventListener("click", handleClickOutside);
 		document.addEventListener("keydown", handleEscapeClick);
-		drawerRef.current.addEventListener("transitionend", handleTransitionEnd)
+		drawerRef.current.addEventListener("transitionend", handleTransitionEnd);
 
 		return () => {
 			window.removeEventListener("scroll", activateStickyHeader);
@@ -66,7 +69,6 @@ const Header: FC = () => {
 			document.removeEventListener("click", handleClickOutside);
 		};
 	}, []);
-
 
 	return (
 		<header
@@ -99,7 +101,14 @@ const Header: FC = () => {
 					</svg>
 				</Link>
 				<nav id="" aria-label="">
-					<button ref={buttonRef} onClick={handleClick} aria-expanded={isDrawerOpen ? 'true' : 'false'} aria-controls="drawer" className={styles.trigger} type="button">
+					<button
+						ref={buttonRef}
+						onClick={handleClick}
+						aria-expanded={isDrawerOpen ? "true" : "false"}
+						aria-controls="drawer"
+						className={styles.trigger}
+						type="button"
+					>
 						<span className="sr-only">Trigger Menu</span>
 						<span></span>
 						<span></span>
@@ -107,17 +116,36 @@ const Header: FC = () => {
 						<span></span>
 					</button>
 					<div className={styles.stage}>
-						<div ref={drawerRef} className={styles.drawer} aria-hidden={isDrawerOpen ? 'false' : 'true'}>
+						<div
+							ref={drawerRef}
+							className={styles.drawer}
+							aria-hidden={isDrawerOpen ? "false" : "true"}
+						>
 							<p className={styles.label}>Menu</p>
 							<ul className={styles.list}>
 								<li>
-									<Link className={pathname === '/articles' ? styles.active : ''} href="/articles">articles</Link>
+									<Link
+										className={pathname === "/articles" ? styles.active : ""}
+										href="/articles"
+									>
+										articles
+									</Link>
 								</li>
 								<li>
-									<Link className={pathname === '/about' ? styles.active : ''} href="/about">about</Link>
+									<Link
+										className={pathname === "/about" ? styles.active : ""}
+										href="/about"
+									>
+										about
+									</Link>
 								</li>
 								<li>
-									<Link className={pathname === '/uses' ? styles.active : ''} href="/uses">uses</Link>
+									<Link
+										className={pathname === "/uses" ? styles.active : ""}
+										href="/uses"
+									>
+										uses
+									</Link>
 								</li>
 								<li>
 									<a className="button" href="mailto:hello@dainemawer.com">

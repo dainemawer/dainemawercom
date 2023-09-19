@@ -2,10 +2,9 @@ import type { FC } from "react";
 import type { RecentylPublishedProps } from "./RecentlyPublished.types";
 import { Card } from "~components/Card/Card";
 
-import styles from './RecentlyPublished.module.css'
+import styles from "./RecentlyPublished.module.css";
 
 export const RecentlyPublished: FC<RecentylPublishedProps> = ({ posts }) => {
-
 	if (!posts) return null;
 
 	return (
@@ -22,6 +21,6 @@ export const RecentlyPublished: FC<RecentylPublishedProps> = ({ posts }) => {
 			))}
 		</section>
 	);
-}
+};
 
 RecentlyPublished.displayName = "RecentlyPublished";

@@ -4,7 +4,8 @@ import Layout from "~components/Layout/Layout";
 
 export const metadata: Metadata = {
 	title: "Uses",
-	description: "Welcome to my uses page. Here you will find all the tools I use to get the job done on the daily.",
+	description:
+		"Welcome to my uses page. Here you will find all the tools I use to get the job done on the daily.",
 	alternates: {
 		canonical: "https://dainemawer.com/uses",
 	},
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 		description:
 			"Welcome to my uses page. Here you will find all the tools I use to get the job done on the daily.",
 		url: "https://dainemawer.com/uses",
-	}
+	},
 };
 
 export default function Uses() {

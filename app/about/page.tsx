@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 		description:
 			"Daine Mawer is an Engineering Manager and Frontend Engineer, living in South Africa 🇿🇦",
 		url: "https://dainemawer.com/about",
-	}
+	},
 };
 
 export default function About() {
@@ -82,7 +82,12 @@ export default function About() {
 
 				<section className={`${styles.resume} not-prose`}>
 					<h4 className="font-bold">Looking for my resume?</h4>
-					<a className={styles.button} href="https://www.linkedin.com/resume-builder/urn:li:fsd_memberResume:67120068/" target="_blank" rel="noopener noreferrer">
+					<a
+						className={styles.button}
+						href="https://www.linkedin.com/resume-builder/urn:li:fsd_memberResume:67120068/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						View Resume
 					</a>
 				</section>

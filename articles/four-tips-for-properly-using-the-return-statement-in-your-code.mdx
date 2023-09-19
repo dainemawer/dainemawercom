@@ -14,12 +14,13 @@ author:
 The return statement is an often overlooked programming paradigm. It allows you to specify a value to be returned by a function and signals the end of its execution. Using this statement properly can ensure your code runs smoothly and may prevent unexpected bugs. Here are five tips for using the return statement effectively:
 
 ### 1. Use the return statement to end a function or method
+
 The return statement signals the end of a function or method. When the return statement is encountered, the function immediately terminates:
 
 ```js
 function sayMyName(name) {
-  console.log(name);
-  return;  // end the function
+	console.log(name);
+	return; // end the function
 }
 ```
 
@@ -35,6 +36,7 @@ return (
  name;
 );
 ```
+
 ### 2. Return a value of the correct data type
 
 When using the return statement, make sure to return the correct data type of the intended value. If you fail to return the correct data type, your program will behave unexpectedly and may result in errors. This is due to a feature of JavaScript known as [Type Coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion).
@@ -43,15 +45,15 @@ Look out for my articles on Using TypeScript and Getting Started with JavaScript
 
 ```js
 function add(a, b) {
-  return a + b;  // correct - returns a number
+	return a + b; // correct - returns a number
 }
 
 function subtract(a, b) {
-  return a - b;  // correct - returns a number
+	return a - b; // correct - returns a number
 }
 
 function multiply(a, b) {
-  return `${a} times ${b} is equal to: ${a * b}`;  // incorrect - returns a string
+	return `${a} times ${b} is equal to: ${a * b}`; // incorrect - returns a string
 }
 ```
 
@@ -63,19 +65,19 @@ Make sure you carefully consider what information you need when writing function
 
 ```js
 function average(numbers) {
-  let total = 0;
-  for (let number of numbers) {
-    total += number;
-  }
-  return total;  // incorrect - returns the sum of the numbers, not the average
+	let total = 0;
+	for (let number of numbers) {
+		total += number;
+	}
+	return total; // incorrect - returns the sum of the numbers, not the average
 }
 
 function average(numbers) {
-  let total = 0;
-  for (let number of numbers) {
-    total += number;
-  }
-  return total / numbers.length;  // correct - returns the average of the numbers
+	let total = 0;
+	for (let number of numbers) {
+		total += number;
+	}
+	return total / numbers.length; // correct - returns the average of the numbers
 }
 ```
 
@@ -86,26 +88,27 @@ When writing a function, it's important to be intentional about the following:
 3. Is the data returned immutable?
 
 ### 4. Use multiple return statements if necessary
+
 Sometimes, you may want to return a value immediately if certain conditions are met. This would apply to using if statements, as well as switch statements.
 
 ```js
 function options(option) {
-  switch(option) {
-    case 'DnD':
-     return 'do-not-disturb';
-   case 'Silent':
-     return 'silent-mode';
-   default:
-     return 'no-option-selected';
-  }
+	switch (option) {
+		case "DnD":
+			return "do-not-disturb";
+		case "Silent":
+			return "silent-mode";
+		default:
+			return "no-option-selected";
+	}
 }
 
 function getOptions(option) {
- if (option === 'DnD') {
-   return 'do-not-disturb';
- }
+	if (option === "DnD") {
+		return "do-not-disturb";
+	}
 
- return option;
+	return option;
 }
 ```
 

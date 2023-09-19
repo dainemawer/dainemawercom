@@ -16,7 +16,7 @@ export const metadata = {
 		description:
 			"Daine Mawers Blog - find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
 		url: "https://dainemawer.com/articles",
-	}
+	},
 };
 
 export default async function Articles() {

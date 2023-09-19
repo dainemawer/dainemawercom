@@ -77,7 +77,7 @@ export default async function Post({
 		headline: `${post?.title}`,
 		alternativeHeadline: `${post?.title}`,
 		image: "http://dainemawer.com/opengraph.jpg",
-		"timeRequired": `${text}`,
+		timeRequired: `${text}`,
 		editor: "Daine Mawer",
 		publisher: "Daine Mawer",
 		url: `https://dainemawer.com/${params.slug}`,
@@ -109,7 +109,6 @@ export default async function Post({
 						<span className="mx-4">|</span>
 						<p className={styles.readingTime}>{text}</p>
 					</div>
-
 				</header>
 				<PostBody>{post?.body}</PostBody>
 			</article>
