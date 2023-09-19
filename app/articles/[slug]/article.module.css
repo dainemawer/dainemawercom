@@ -1,0 +1,7 @@
+.header {
+	@apply text-center;
+}
+
+.readingTime {
+	@apply m-0;
+}

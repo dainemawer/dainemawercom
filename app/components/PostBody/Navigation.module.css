@@ -1,0 +1,23 @@
+.nav {
+	@apply flex justify-between gap-4 border-t border-gray-300 pt-6 mt-6;
+}
+
+.item {
+	@apply flex flex-col max-w-[250px];
+}
+
+.item:only-child {
+	@apply max-w-full;
+}
+
+.item:nth-child(2) {
+	@apply text-right;
+}
+
+.item span {
+	@apply text-sm;
+}
+
+.item h4 {
+	@apply font-bold mt-2;
+}

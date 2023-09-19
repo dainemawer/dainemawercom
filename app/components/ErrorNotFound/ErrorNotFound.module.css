@@ -1,0 +1,7 @@
+.section {
+	@apply prose my-16 text-center prose-h1:text-7xl prose-h2:my-8 prose-h1:mb-0;
+}
+
+.button {
+	@apply flex justify-center;
+}

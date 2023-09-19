@@ -1,0 +1,8 @@
+{
+	"extends": [
+		"next/core-web-vitals",
+		"plugin:typescript-sort-keys/recommended",
+		"plugin:prettier/recommended"
+	],
+	"plugins": ["typescript-sort-keys"]
+}
