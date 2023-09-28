@@ -35,10 +35,10 @@ export const generateMetadata = async ({
 		openGraph: {
 			title: post?.title,
 			description: post?.excerpt,
-			url: `https://dainemawer.com/blog/${params.slug}`,
+			url: `https://dainemawer.com/articles/${params.slug}`,
 		},
 		alternates: {
-			canonical: `https://dainemawer.com/blog/${params.slug}`,
+			canonical: `https://dainemawer.com/articles/${params.slug}`,
 		},
 	};
 };

@@ -8,13 +8,11 @@ export const ErrorNotFound: FC = () => {
 		<section className={styles.section}>
 			<h1>404</h1>
 			<h2>Oops, looks like this this page no longer exists.</h2>
-			<div className={styles.buttons}>
-				<Link className="button" href="/">
-					Home
-				</Link>
-				<Link className="button" href="/blog">
-					Blog
-				</Link>
+			<div className={styles.description}>
+				<p>
+					Return <Link href="/">home</Link> or visit the{" "}
+					<Link href="/articles">articles</Link> page.
+				</p>
 			</div>
 		</section>
 	);

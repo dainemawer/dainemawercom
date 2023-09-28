@@ -10,9 +10,9 @@ export const footerMenu = [
 		label: "About",
 	},
 	{
-		id: "blog",
-		href: "/blog",
-		label: "Blog",
+		id: "articles",
+		href: "/articles",
+		label: "Articles",
 	},
 	{
 		id: "contact",

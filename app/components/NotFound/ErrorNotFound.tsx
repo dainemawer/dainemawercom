@@ -10,8 +10,8 @@ export const NotFound: FC = () => {
 				<Link className="button" href="/">
 					Home
 				</Link>
-				<Link className="button" href="/blog">
-					Blog
+				<Link className="button" href="/articles">
+					Articles
 				</Link>
 			</div>
 		</section>

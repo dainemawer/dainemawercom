@@ -91,7 +91,7 @@
 }
 
 .drawer {
-	@apply relative transition-all duration-300 opacity-0 invisible max-w-[320px] ml-auto translate-x-[320px] h-full bottom-0 bg-white w-full lg:w-auto pointer-events-none lg:pointer-events-auto z-40 pt-6 pb-8 px-8 lg:p-0 lg:opacity-100 lg:visible lg:translate-x-0 lg:max-w-none;
+	@apply relative transition-all duration-300 opacity-0 invisible max-w-[320px] ml-auto translate-x-[320px] h-full bottom-0 bg-white lg:bg-transparent w-full lg:w-auto pointer-events-none lg:pointer-events-auto z-40 pt-6 pb-8 px-8 lg:p-0 lg:opacity-100 lg:visible lg:translate-x-0 lg:max-w-none;
 
 	&[aria-hidden="false"] {
 		@apply pointer-events-auto visible opacity-100 translate-x-0;

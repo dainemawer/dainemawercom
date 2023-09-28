@@ -48,7 +48,7 @@ export const Hero: FC = () => {
 					Hire me
 				</Link>
 				<a
-					href="https://adplist.com"
+					href="https://adplist.org/mentors/daine-mawer"
 					className={styles.link}
 					target="_blank"
 					rel="noopener noreferrer"

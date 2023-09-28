@@ -10,6 +10,125 @@ const nextConfig = {
 			},
 		];
 	},
+	async redirects() {
+		return [
+			{
+				source: "/how-to-motivate-and-inspire-individual-contributors",
+				destination:
+					"/articles/how-to-motivate-and-inspire-individual-contributors",
+				permanent: true,
+			},
+			{
+				source:
+					"/articles/waking-up-early-a-crash-course-for-software-engineers",
+				destination: "/articles/waking-up-early-a-crash-course-for-engineers",
+				permanent: true,
+			},
+			{
+				source: "/four-surprising-benefits-of-intermittent-fasting",
+				destination:
+					"/articles/four-surprising-benefits-of-intermittent-fasting",
+				permanent: true,
+			},
+			{
+				source:
+					"/articles/five-surprising-benefits-of-intermittent-fasting-for-software-engineers",
+				destination:
+					"articles/four-surprising-benefits-of-intermittent-fasting",
+				permanent: true,
+			},
+			{
+				source: "/leveraging-commitlint-for-consistency",
+				destination: "/articles/leveraging-commitlint-for-consistency",
+				permanent: true,
+			},
+			{
+				source: "/blog/leveraging-commitlint-for-consistency",
+				destination: "/articles/leveraging-commitlint-for-consistency",
+				permanent: true,
+			},
+			{
+				source:
+					"/five-frontend-file-architectures-for-better-code-organisation",
+				destination:
+					"/articles/five-frontend-file-architectures-for-better-code-organisation",
+				permanent: true,
+			},
+			{
+				source:
+					"/five-frontend-file-architectures-for-better-code-organisation",
+				destination:
+					"/articles/five-frontend-file-architectures-for-better-code-organisation",
+				permanent: true,
+			},
+			{
+				source: "/four-tips-for-properly-using-the-return-statement",
+				destination:
+					"/articles/four-tips-for-properly-using-the-return-statement",
+				permanent: true,
+			},
+			{
+				source: "/blog/four-surprising-benefits-of-intermittent-fasting",
+				destination:
+					"/articles/four-surprising-benefits-of-intermittent-fasting",
+				permanent: true,
+			},
+			{
+				source: "/blog/four-surprising-benefits-of-intermittent-fasting",
+				destination:
+					"/articles/four-surprising-benefits-of-intermittent-fasting",
+				permanent: true,
+			},
+			{
+				source: "/ten-proven-techniques-for-effective-code-reviews",
+				destination:
+					"/articles/ten-proven-techniques-for-effective-code-reviews",
+				permanent: true,
+			},
+			{
+				source: "/ten-proven-techniques-for-effective-code-reviews",
+				destination:
+					"/articles/ten-proven-techniques-for-effective-code-reviews",
+				permanent: true,
+			},
+			{
+				source: "/blog",
+				destination: "/articles",
+				permanent: true,
+			},
+			{
+				source:
+					"/blog/five-frontend-file-architectures-for-better-code-organisation",
+				destination:
+					"/articles/five-frontend-file-architectures-for-better-code-organisation",
+				permanent: true,
+			},
+			{
+				source: "/blog/ten-proven-techniques-for-effective-code-reviews",
+				destination:
+					"/articles/ten-proven-techniques-for-effective-code-reviews",
+				permanent: true,
+			},
+			{
+				source: "/blog/how-to-motivate-and-inspire-individual-contributors",
+				destination:
+					"/articles/how-to-motivate-and-inspire-individual-contributors",
+				permanent: true,
+			},
+			{
+				source:
+					"/articles/how-commitlint-can-improve-your-projects-quality-and-documentation",
+				destination: "/articles/leveraging-commitlint-for-consistency",
+				permanent: true,
+			},
+			{
+				source:
+					"/articles/how-commitlint-can-improve-your-projects-quality-and-documentation",
+				destination: "/articles/leveraging-commitlint-for-consistency",
+				permanent: true,
+			},
+		];
+	},
 };
 
 const ContentSecurityPolicy = `

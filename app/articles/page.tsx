@@ -7,12 +7,12 @@ import { Schema } from "~components/Schema/Schema";
 import { getPosts } from "~lib/posts";
 
 export const metadata = {
-	title: "Blog",
+	title: "Articles",
 	alternates: {
 		canonical: "https://dainemawer.com/articles",
 	},
 	openGraph: {
-		title: "Blog",
+		title: "Articles",
 		description:
 			"Daine Mawers Blog - find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
 		url: "https://dainemawer.com/articles",
@@ -43,7 +43,7 @@ export default async function Articles() {
 		<Layout>
 			<Schema schema={schema} />
 			<section className="prose">
-				<h1>Blog</h1>
+				<h1>Articles</h1>
 				{dedupedYears &&
 					dedupedYears.map((year: any, index: any) => {
 						return (
