@@ -141,6 +141,14 @@ const Header: FC = () => {
 								</li>
 								<li>
 									<Link
+										className={pathname === "/patterns" ? styles.active : ""}
+										href="/patterns"
+									>
+										patterns
+									</Link>
+								</li>
+								<li>
+									<Link
 										className={pathname === "/uses" ? styles.active : ""}
 										href="/uses"
 									>
