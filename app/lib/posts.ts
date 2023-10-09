@@ -18,7 +18,7 @@ export const getPosts = cache(async () => {
 				const { data, content } = matter(postContent);
 
 				if (data.published === false) {
-					return null;
+					return;
 				}
 
 				return { ...data, body: content } as Post;

@@ -10,15 +10,18 @@ export const RecentlyPublished: FC<RecentylPublishedProps> = ({ posts }) => {
 	return (
 		<section className={styles.recent}>
 			<h2>Recently Published</h2>
-			{posts.slice(4).map((post) => (
-				<Card
-					key={post.slug}
-					title={post.title}
-					excerpt={post.excerpt}
-					slug={post.slug}
-					date={post.date}
-				/>
-			))}
+			{posts
+				.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+				.slice(0, 4)
+				.map((post) => (
+					<Card
+						key={post?.slug}
+						title={post?.title}
+						excerpt={post?.excerpt}
+						slug={post?.slug}
+						date={post?.date}
+					/>
+				))}
 		</section>
 	);
 };

@@ -38,7 +38,8 @@ export const generateMetadata = async ({
 			url: `https://dainemawer.com/articles/${params.slug}`,
 		},
 		alternates: {
-			canonical: `https://dainemawer.com/articles/${params.slug}`,
+			canonical:
+				post.canonical || `https://dainemawer.com/articles/${params.slug}`,
 		},
 	};
 };

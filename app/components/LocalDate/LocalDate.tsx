@@ -3,6 +3,7 @@ import type { LocalDateProps } from "./LocalDate.types";
 import { parseISO, format } from "date-fns";
 
 export const LocalDate: FC<LocalDateProps> = ({ className, dateString }) => {
+	if (!dateString) return null;
 	const date = parseISO(dateString);
 
 	return (

@@ -52,6 +52,11 @@ export default async function Articles() {
 								<ul className="pl-0">
 									{posts &&
 										posts
+											.sort(
+												(a, b) =>
+													new Date(b.date).getTime() -
+													new Date(a.date).getTime(),
+											)
 											.filter(
 												(post) =>
 													post && new Date(post.date).getFullYear() === year,

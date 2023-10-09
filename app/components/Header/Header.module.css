@@ -83,7 +83,7 @@
 }
 
 .stage {
-	@apply pointer-events-none lg:pointer-events-auto transition-all duration-300 fixed left-0 top-0 sm:top-[142px] w-screen h-screen overflow-hidden z-30 lg:static lg:w-auto lg:h-auto lg:overflow-auto;
+	@apply pointer-events-none lg:pointer-events-auto transition-all duration-300 fixed left-0 top-0 w-screen h-screen overflow-hidden z-30 lg:static lg:w-auto lg:h-auto lg:overflow-auto;
 
 	&::after {
 		@apply pointer-events-none lg:pointer-events-auto block absolute left-0 top-0 w-full h-full bg-black opacity-0 will-change-auto z-30;

@@ -6,6 +6,11 @@
 	@apply prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 hover:prose-a:underline prose-a:no-underline max-w-none lg:prose-lg;
 }
 
+.section *:where([id]) {
+
+	@apply scroll-mt-20 lg:scroll-mt-24;
+}
+
 a:where(.button) {
 	@apply transition-colors text-sm bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded;
 }

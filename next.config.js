@@ -127,6 +127,11 @@ const nextConfig = {
 				destination: "/articles/leveraging-commitlint-for-consistency",
 				permanent: true,
 			},
+			{
+				source: "/rss",
+				destination: "/rss.xml",
+				permanent: true,
+			},
 		];
 	},
 };
