@@ -1,7 +1,8 @@
 import type { Post } from "~types";
 import type { Metadata } from "next";
 
-import { BlogPosting, WithContext } from "schema-dts";
+import { BlogPosting, BreadcrumbList, WithContext } from "schema-dts";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Balancer } from "react-wrap-balancer";
 import Layout from "~components/Layout/Layout";
@@ -10,6 +11,8 @@ import { LocalDate } from "~components/LocalDate/LocalDate";
 import { PostNavigation } from "~components/PostBody/Navigation";
 import { AuthorBio } from "~components/AuthorBio/AuthorBio";
 import { Progress } from "~components/Progress/Progress";
+import { Breadcrumbs } from "~components/Breadcrumbs/Breadcrumbs";
+import { Tags } from "~components/Tags/Tags";
 import readingTime from "reading-time";
 
 import styles from "./article.module.css";
@@ -66,6 +69,8 @@ export default async function Post({
 	};
 }) {
 	const post = await getPost(params.slug);
+	const tags = post?.tags as any;
+	const tagsAsArray = Array.from(tags.split(","));
 
 	if (!post) return notFound();
 
@@ -93,19 +98,61 @@ export default async function Post({
 		},
 	};
 
+	const breadcrumbSchema: WithContext<BreadcrumbList> = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://dainemawer.com",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Articles",
+				item: "https://dainemawer.com/articles",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: `${post?.category}`,
+				item: `https://dainemawer.com/category/${post?.category}`,
+			},
+		],
+	};
+
 	return (
 		<Layout>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
 			/>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+			/>
 			<Progress />
-			<article id="" className="section" aria-label="">
+			<article
+				id=""
+				className={`section is-${post.category}-page`}
+				aria-label=""
+			>
+				<Breadcrumbs
+					category={post.category}
+					slug={post.slug}
+					title={post.title}
+				/>
 				<header className={styles.header}>
 					<h1>
 						<Balancer>{post?.title}</Balancer>
 					</h1>
 					<div className="flex items-center justify-center">
+						<Link className="capitalize" href={`/category/${post.category}`}>
+							{post.category.replace("-", " ")}
+						</Link>
+						<span className="mx-4">|</span>
 						<LocalDate dateString={post?.date} />
 						<span className="mx-4">|</span>
 						<p className={styles.readingTime}>{text}</p>
@@ -113,6 +160,7 @@ export default async function Post({
 				</header>
 				<PostBody>{post?.body}</PostBody>
 			</article>
+			<Tags tags={tagsAsArray as any} />
 			<AuthorBio
 				excerpt={post?.excerpt}
 				title={post?.excerpt}

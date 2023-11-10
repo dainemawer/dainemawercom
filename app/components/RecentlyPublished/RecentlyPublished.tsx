@@ -15,6 +15,8 @@ export const RecentlyPublished: FC<RecentylPublishedProps> = ({ posts }) => {
 				.slice(0, 4)
 				.map((post) => (
 					<Card
+						body={post?.body}
+						category={post?.category}
 						key={post?.slug}
 						title={post?.title}
 						excerpt={post?.excerpt}

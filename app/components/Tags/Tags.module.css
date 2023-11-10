@@ -1,0 +1,11 @@
+.tags {
+	@apply items-center flex mb-6 flex-wrap;
+}
+
+.tag {
+	@apply mr-4 last:mr-0 text-sm bg-slate-50 border border-slate-300 py-1 px-2 hover:bg-slate-100 hover:text-blue-600 transition-all;
+}
+
+.tagHeading {
+	@apply text-sm mr-4;
+}

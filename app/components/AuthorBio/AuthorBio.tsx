@@ -68,7 +68,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 								target="_blank"
 								rel="noreferrer"
 							>
-								Twiiter
+								Twitter
 							</a>
 						</li>
 						<li className={styles.share}>

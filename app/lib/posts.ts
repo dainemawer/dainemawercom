@@ -26,8 +26,41 @@ export const getPosts = cache(async () => {
 	);
 });
 
+export async function getPostsByCategory(category: string) {
+	const posts = await getPosts();
+
+	return posts.filter((post) => post && post.category === category);
+}
+
+export async function getPostsByTag(tag: string) {
+	const posts = await getPosts();
+
+	return posts.filter((post) => post && post.tags.includes(tag));
+}
+
+export async function getAllTags() {
+	const posts = await getPosts();
+	const tags = posts
+		.map((post) => {
+			const postTags = post.tags as any;
+			return postTags.split(",").map((tag) => tag.trim());
+		})
+		.flat();
+
+	return tags.filter((tag, index) => tags.indexOf(tag) === index);
+}
+
 export async function getPost(slug: string) {
 	const posts = await getPosts();
 
 	return posts.find((post) => post && post.slug === slug);
+}
+
+export const ITEMS_PER_PAGE = 5;
+
+export async function getPostPages() {
+	const posts = await getPosts();
+	const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+
+	return totalPages;
 }

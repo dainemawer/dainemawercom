@@ -1,0 +1,3 @@
+.anchor {
+	@apply hover:text-blue-600 hover:underline transition-colors focus:text-blue-600 focus:underline focus:outline-none;
+}
