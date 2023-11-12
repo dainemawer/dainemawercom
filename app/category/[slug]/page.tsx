@@ -24,13 +24,13 @@ export const generateMetadata = async ({
 	const upperCaseCategory = category[0].toUpperCase() + category.substring(1);
 
 	return {
-		title: `Category | ${upperCaseCategory}`,
+		title: `${upperCaseCategory} | Articles`,
+		description: `Discover interesting opinions and techniques related to ${params.slug} on dainemawer.com`,
 		alternates: {
 			canonical: `https://dainemawer.com/category/${params.slug}`,
 		},
 		openGraph: {
-			title: `Category | ${upperCaseCategory}`,
-			description: `Read related posts about ${params.slug} on Daine Mawers Blog.`,
+			title: `${upperCaseCategory} | Articles`,
 			url: `https://dainemawer.com/category/${params.slug}`,
 		},
 	};
@@ -50,8 +50,7 @@ export default async function Category({
 		"@context": "https://schema.org",
 		"@type": "WebPage",
 		name: "Daine Mawers Blog",
-		description:
-			"Daine Mawers Blog - find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
+		description: `Discover interesting opinions and techniques related to ${params.slug} on dainemawer.com`,
 	};
 
 	return (

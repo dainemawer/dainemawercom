@@ -23,13 +23,13 @@ export const generateMetadata = async ({
 	const tag = params.slug;
 	const upperCaseTag = tag[0].toUpperCase() + tag.substring(1);
 	return {
-		title: `Tag | ${upperCaseTag}`,
+		title: `${upperCaseTag.replace("-", " ")} | Articles`,
+		description: `Discover interesting opinions and techniques related to ${params.slug} on dainemawer.com`,
 		alternates: {
 			canonical: `https://dainemawer.com/tags/${params.slug}`,
 		},
 		openGraph: {
-			title: `Tag | ${upperCaseTag}`,
-			description: `Read related posts about ${params.slug} on Daine Mawers Blog.`,
+			title: `${upperCaseTag.replace("-", " ")} | Articles`,
 			url: `https://dainemawer.com/tags/${params.slug}`,
 		},
 	};
@@ -49,9 +49,8 @@ export default async function Tag({
 	const schema: WithContext<WebPage> = {
 		"@context": "https://schema.org",
 		"@type": "WebPage",
-		name: "Daine Mawers Blog",
-		description:
-			"Daine Mawers Blog - find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
+		name: "Daine Mawer",
+		description: `Discover interesting opinions and techniques related to ${params.slug} on dainemawer.com`,
 	};
 
 	return (

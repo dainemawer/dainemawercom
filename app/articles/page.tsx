@@ -8,13 +8,13 @@ import { Pagination } from "~components/Pagination/Pagination";
 
 export const metadata = {
 	title: "Articles",
+	description:
+		"Find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
 	alternates: {
 		canonical: "https://dainemawer.com/articles",
 	},
 	openGraph: {
 		title: "Articles",
-		description:
-			"Daine Mawers Blog - find useful articles that I post from time to time outlining my experience as a Frontend Engineer and Engineering Manager.",
 		url: "https://dainemawer.com/articles",
 	},
 };

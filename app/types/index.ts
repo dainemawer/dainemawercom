@@ -5,6 +5,7 @@ export type Post = {
 	date: string;
 	excerpt: string;
 	lastModified: string;
+	sitemap: boolean;
 	slug: string;
 	state: string;
 	tags: string[];

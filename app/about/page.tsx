@@ -7,16 +7,14 @@ import { Recommendations } from "~components/Recommendations/Recommendations";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-	title: "About",
+	title: "About | What I Do",
 	description:
-		"Daine Mawer is an Engineering Manager and Frontend Engineer, living in South Africa 🇿🇦",
+		"Daine Mawer is an Engineering Manager and Frontend Engineer, specialising in React, TypeScript and NextJS",
 	alternates: {
 		canonical: "https://dainemawer.com/about",
 	},
 	openGraph: {
-		title: "About",
-		description:
-			"Daine Mawer is an Engineering Manager and Frontend Engineer, living in South Africa 🇿🇦",
+		title: "About | What I Do",
 		url: "https://dainemawer.com/about",
 	},
 };
@@ -25,9 +23,9 @@ export default function About() {
 	const schema: WithContext<WebPage> = {
 		"@context": "https://schema.org",
 		"@type": "WebPage",
-		name: "About Daine Mawer",
+		name: "About | What I Do",
 		description:
-			"Daine Mawer is an Engineering Manager and Frontend Engineer, living in South Africa 🇿🇦",
+			"Daine Mawer is an Engineering Manager and Frontend Engineer, specialising in React, TypeScript and NextJS",
 	};
 
 	return (
