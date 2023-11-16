@@ -137,7 +137,7 @@ const nextConfig = {
 };
 
 const ContentSecurityPolicy = `
-		script-src 'self' 'unsafe-eval' 'unsafe-inline' https://client.crisp.chat;
+		script-src 'self' 'unsafe-eval' 'unsafe-inline' https://client.crisp.chat https://static.cloudflareinsights.com;
 		style-src 'self' 'unsafe-inline' https://client.crisp.chat;
     img-src * blob: data:;
     media-src 'none';
