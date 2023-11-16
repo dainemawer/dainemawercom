@@ -137,14 +137,15 @@ const nextConfig = {
 };
 
 const ContentSecurityPolicy = `
-    default-src 'self' vercel.live;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live;
-    style-src 'self' 'unsafe-inline';
+		script-src 'self' 'unsafe-eval' 'unsafe-inline' https://client.crisp.chat;
+		style-src 'self' 'unsafe-inline' https://client.crisp.chat;
     img-src * blob: data:;
     media-src 'none';
     connect-src *;
-    font-src 'self' data:;
+    font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://client.crisp.chat;
 `;
+
+// default-src 'self' 'https://blog.logrocket.com'; image-src 'https://unsplash.com'; script-src 'self' https://www.google-analytics.com; font-src 'self' 'https://fonts.googleapis.com';
 
 const securityHeaders = [
 	{
@@ -170,10 +171,6 @@ const securityHeaders = [
 	{
 		key: "Strict-Transport-Security",
 		value: "max-age=31536000; includeSubDomains; preload",
-	},
-	{
-		key: "Permissions-Policy",
-		value: "camera=(), microphone=(), geolocation=()",
 	},
 ];
 
