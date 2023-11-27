@@ -57,10 +57,6 @@ a:where(.button-inverted) {
 	@apply bg-purple-200 text-purple-600 border-purple-400;
 }
 
-.is-best-practices-page #table-of-contents {
-	@apply border-t-purple-600;
-}
-
 .is-opinion {
 	@apply bg-emerald-200 text-emerald-600 border-emerald-400;
 }

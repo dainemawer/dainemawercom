@@ -27,7 +27,7 @@ export const Card: FC<CardProps> = ({
 				{category && (
 					<li className="p-0 mr-4 relative">
 						<span
-							className={`capitalize text-sm inline-block border py-1 px-2 rounded-md border-slate-300 bg-slate-50 is-${category}`}
+							className={`capitalize text-sm inline-block border py-1 px-2 rounded-md border-slate-300 bg-slate-50`}
 						>
 							{label}
 						</span>
