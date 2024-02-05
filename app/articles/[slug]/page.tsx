@@ -42,7 +42,7 @@ export const generateMetadata = async ({
 		},
 		alternates: {
 			canonical:
-				post.canonical || `https://dainemawer.com/articles/${params.slug}`,
+				post?.canonical || `https://dainemawer.com/articles/${params.slug}`,
 		},
 	};
 };
@@ -70,7 +70,7 @@ export default async function Post({
 }) {
 	const post = await getPost(params.slug);
 	const tags = post?.tags as any;
-	const tagsAsArray = Array.from(tags.split(","));
+	const tagsAsArray = tags && Array.from(tags.split(","));
 
 	if (!post) return notFound();
 
