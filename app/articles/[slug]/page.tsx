@@ -1,27 +1,35 @@
 import type { Post } from "~types";
 import type { Metadata } from "next";
+import { Code } from "bright";
+import speakingurl from "speakingurl";
 
 import { BlogPosting, BreadcrumbList, WithContext } from "schema-dts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Balancer } from "react-wrap-balancer";
 import Layout from "~components/Layout/Layout";
-import { PostBody } from "~components/PostBody/PostBody";
 import { LocalDate } from "~components/LocalDate/LocalDate";
 import { PostNavigation } from "~components/PostBody/Navigation";
 import { AuthorBio } from "~components/AuthorBio/AuthorBio";
 import { Progress } from "~components/Progress/Progress";
 import { Breadcrumbs } from "~components/Breadcrumbs/Breadcrumbs";
 import { Tags } from "~components/Tags/Tags";
-import readingTime from "reading-time";
+import { TableOfContents } from "~components/TableOfContents/TableOfContents";
+import { PortableText } from "@portabletext/react";
 
 import styles from "./article.module.css";
 
-import { getPosts, getPost } from "~lib/posts";
+import { sanityFetch } from "../../../sanity/lib/client";
+import { fetchAllBlogPosts } from "../../../sanity/lib/queries";
+
+import { parseOutline } from "~lib/outline";
 
 export async function generateStaticParams() {
-	const posts = await getPosts();
-	return posts.map((post: Post) => ({ slug: post.slug }));
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
+	return articles.map((article: Post) => ({ slug: article.slug.current }));
 }
 
 export const generateMetadata = async ({
@@ -31,67 +39,91 @@ export const generateMetadata = async ({
 		slug: string;
 	};
 }): Promise<Metadata> => {
-	const post = (await getPosts()).find((p) => p?.slug === params.slug);
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
+	const article = articles.find((a) => a.slug.current === params.slug);
 	return {
-		title: post?.title,
-		description: post?.excerpt,
+		title: article?.title,
+		description: article?.excerpt,
 		openGraph: {
-			title: post?.title,
-			description: post?.excerpt,
+			title: article?.title,
+			description: article?.excerpt,
 			url: `https://dainemawer.com/articles/${params.slug}`,
 		},
 		alternates: {
 			canonical:
-				post?.canonical || `https://dainemawer.com/articles/${params.slug}`,
+				article?.canonical || `https://dainemawer.com/articles/${params.slug}`,
 		},
 	};
 };
 
-async function getData({ slug }: { slug: string }) {
-	const posts = await getPosts();
+const components = {
+	block: {
+		h3: ({ children }) => {
+			return <h3 id={`${speakingurl(children[0])}`}>{children}</h3>;
+		},
+	},
+	types: {
+		code: (props: any) => {
+			return (
+				<Code lang={props.value.language} lineNumbers>
+					{props.value.code as any}
+				</Code>
+			);
+		},
+	},
+};
 
-	const postIndex = posts && posts.findIndex((p) => p?.slug === slug);
-	const post = posts && posts[postIndex];
-	const { ...rest } = post;
+async function getData({ slug }: { slug: string }) {
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
+
+	const currentArticle = articles.findIndex((a) => a.slug.current === slug);
+	const article = articles[currentArticle];
+	const { ...rest } = article;
+
+	const previous = articles[currentArticle + 1];
+	const next = articles[currentArticle - 1];
 
 	return {
-		previous: (posts && posts[postIndex + 1]) || null,
-		next: (posts && posts[postIndex - 1]) || null,
+		previous,
+		next,
+		article,
 		...rest,
 	};
 }
 
-export default async function Post({
+export default async function SinglePost({
 	params,
 }: {
 	params: {
 		slug: string;
 	};
 }) {
-	const post = await getPost(params.slug);
-	const tags = post?.tags as any;
-	const tagsAsArray = tags && Array.from(tags.split(","));
+	const { article, previous, next } = await getData(params);
+	const outline = parseOutline(article?.body);
 
-	if (!post) return notFound();
-
-	const data = await getData(params);
-	const { text } = readingTime(post?.body);
+	if (!article) return notFound();
 
 	const schema: WithContext<BlogPosting> = {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
-		headline: `${post?.title}`,
-		alternativeHeadline: `${post?.title}`,
+		headline: `${article?.title}`,
+		alternativeHeadline: `${article?.title}`,
 		image: "http://dainemawer.com/opengraph.jpg",
-		timeRequired: `${text}`,
+		timeRequired: `{article?.estimatedReadingTime} min read`,
 		editor: "Daine Mawer",
 		publisher: "Daine Mawer",
 		url: `https://dainemawer.com/${params.slug}`,
-		datePublished: `${post?.date}`,
-		dateCreated: `${post?.date}`,
-		dateModified: `${post?.date}`,
-		description: `${post?.excerpt}`,
-		articleBody: `${post?.body}`,
+		datePublished: `${article?.publishedAt}`,
+		dateCreated: `${article?.publishedAt}`,
+		dateModified: `${article?.publishedAt}`,
+		description: `${article?.excerpt}`,
+		// articleBody: `${post?.body}`,
 		author: {
 			"@type": "Person",
 			name: "Daine Mawer",
@@ -117,8 +149,8 @@ export default async function Post({
 			{
 				"@type": "ListItem",
 				position: 3,
-				name: `${post?.category}`,
-				item: `https://dainemawer.com/category/${post?.category}`,
+				name: `${article.category.title}`,
+				item: `https://dainemawer.com/category/${article.category.slug.current}`,
 			},
 		],
 	};
@@ -136,37 +168,46 @@ export default async function Post({
 			<Progress />
 			<article
 				id=""
-				className={`section is-${post.category}-page`}
+				className={`section is-${article.category.slug.current}-page`}
 				aria-label=""
 			>
 				<Breadcrumbs
-					category={post.category}
-					slug={post.slug}
-					title={post.title}
+					category={article.category.slug.current}
+					slug={article.slug.current}
+					title={article.title}
 				/>
 				<header className={styles.header}>
 					<h1>
-						<Balancer>{post?.title}</Balancer>
+						<Balancer>{article?.title}</Balancer>
 					</h1>
 					<div className="flex items-center justify-center">
-						<Link className="capitalize" href={`/category/${post.category}`}>
-							{post.category.replace("-", " ")}
+						<Link
+							className="capitalize"
+							href={`/category/${article.category.slug.current}`}
+						>
+							{article.category.title}
 						</Link>
 						<span className="mx-4">|</span>
-						<LocalDate dateString={post?.date} />
+						<LocalDate dateString={article?.publishedAt} />
 						<span className="mx-4">|</span>
-						<p className={styles.readingTime}>{text}</p>
+						<p className={styles.readingTime}>
+							{article.estimatedReadingTime} min read
+						</p>
 					</div>
 				</header>
-				<PostBody>{post?.body}</PostBody>
+				<TableOfContents outline={outline as any} />
+				<PortableText
+					components={components as any}
+					value={article.body as any}
+				/>
 			</article>
-			<Tags tags={tagsAsArray as any} />
+			<Tags tags={article.tags} />
 			<AuthorBio
-				excerpt={post?.excerpt}
-				title={post?.excerpt}
+				excerpt={article?.excerpt}
+				title={article?.excerpt}
 				slug={params.slug}
 			/>
-			<PostNavigation previous={data?.previous} next={data?.next} />
+			<PostNavigation previous={previous} next={next} />
 		</Layout>
 	);
 }

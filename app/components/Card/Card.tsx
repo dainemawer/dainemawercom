@@ -2,7 +2,6 @@ import type { FC } from "react";
 import type { CardProps } from "./Card.types";
 import Link from "next/link";
 import { LocalDate } from "~components/LocalDate/LocalDate";
-import readingTime from "reading-time";
 
 import styles from "./Card.module.css";
 
@@ -11,12 +10,9 @@ export const Card: FC<CardProps> = ({
 	slug,
 	title,
 	excerpt,
-	body,
 	date,
+	readingTime,
 }) => {
-	const label = category.replace("-", " ");
-	const { text } = readingTime(body);
-
 	return (
 		<article id="" aria-label="" className={styles.article}>
 			<h3>
@@ -29,7 +25,7 @@ export const Card: FC<CardProps> = ({
 						<span
 							className={`capitalize text-sm inline-block border py-1 px-2 rounded-md border-slate-300 bg-slate-50`}
 						>
-							{label}
+							{category.title}
 						</span>
 					</li>
 				)}
@@ -41,9 +37,9 @@ export const Card: FC<CardProps> = ({
 				<li className="ml-4">
 					<span>|</span>
 				</li>
-				{text && (
+				{readingTime && (
 					<li className="p-0 ml-4">
-						<span className="text-sm">{text}</span>
+						<span className="text-sm">{readingTime} min read</span>
 					</li>
 				)}
 			</ul>

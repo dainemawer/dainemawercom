@@ -4,7 +4,10 @@ import Layout from "~components/Layout/Layout";
 import { Hero } from "~components/Hero/Hero";
 import { Newsletter } from "~components/Newsletter/Newsletter";
 import { RecentlyPublished } from "~components/RecentlyPublished/RecentlyPublished";
-import { getPosts } from "~lib/posts";
+import { Post } from "~types";
+
+import { sanityFetch } from "../sanity/lib/client";
+import { fetchAllBlogPosts } from "../sanity/lib/queries";
 
 export const metadata: Metadata = {
 	title: "Home | Daine Mawer",
@@ -35,7 +38,10 @@ export default async function Home() {
 		],
 	};
 
-	const posts = await getPosts();
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
 
 	return (
 		<Layout>
@@ -44,7 +50,7 @@ export default async function Home() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
 			/>
 			<Hero />
-			<RecentlyPublished posts={posts} />
+			<RecentlyPublished posts={articles} />
 			<Newsletter />
 		</Layout>
 	);
