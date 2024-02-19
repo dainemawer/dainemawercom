@@ -10,7 +10,10 @@ export const PostNavigation: FC<PostNavigationProps> = ({ previous, next }) => {
 		<nav className={styles.nav}>
 			{previous && (
 				<div className={styles.item}>
-					<Link className={styles.link} href={`/articles/${previous.slug}`}>
+					<Link
+						className={styles.link}
+						href={`/articles/${previous.slug.current}`}
+					>
 						<span>← Older</span>
 						<h4>{previous.title}</h4>
 					</Link>
@@ -18,7 +21,7 @@ export const PostNavigation: FC<PostNavigationProps> = ({ previous, next }) => {
 			)}
 			{next && (
 				<div className={styles.item}>
-					<Link className={styles.link} href={`/articles/${next.slug}`}>
+					<Link className={styles.link} href={`/articles/${next.slug.current}`}>
 						<span>Newer →</span>
 						<h4>{next.title}</h4>
 					</Link>

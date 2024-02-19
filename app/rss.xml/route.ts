@@ -1,12 +1,16 @@
 import Rss from "rss";
-
-import { getPosts } from "~lib/posts";
 import type { Post } from "~types";
+
+import { fetchAllBlogPosts } from "../../sanity/lib/queries";
+import { sanityFetch } from "../../sanity/lib/client";
 
 const SITE_URL = process.env.SITE_URL || "https://dainemawer.com";
 
 export async function GET() {
-	const articles = await getPosts();
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
 
 	const feed = new Rss({
 		title: "Daine Mawer",
@@ -20,8 +24,8 @@ export async function GET() {
 		feed.item({
 			title: article.title,
 			description: article.excerpt,
-			url: `${SITE_URL}/articles/${article.slug}`,
-			date: article.date,
+			url: `${SITE_URL}/articles/${article.slug.current}`,
+			date: article.publishedAt,
 		});
 	});
 

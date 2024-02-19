@@ -34,33 +34,3 @@ a:where(.button-inverted) {
 .drawer-open {
 	@apply overflow-hidden;
 }
-
-/* Category Styles */
-
-.is-javascript {
-	@apply bg-orange-200 text-orange-600 border-orange-400;
-}
-
-.is-advice {
-	@apply bg-rose-200 text-rose-600 border-rose-400;
-}
-
-.is-vscode {
-	@apply bg-sky-200 text-sky-600 border-sky-400;
-}
-
-.is-workflow {
-	@apply bg-amber-200 text-amber-600 border-amber-400;
-}
-
-.is-best-practices {
-	@apply bg-purple-200 text-purple-600 border-purple-400;
-}
-
-.is-opinion {
-	@apply bg-emerald-200 text-emerald-600 border-emerald-400;
-}
-
-.is-performance {
-	@apply bg-teal-200 text-teal-600 border-teal-400;
-}

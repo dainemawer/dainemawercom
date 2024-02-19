@@ -6,11 +6,15 @@ import { Schema } from "~components/Schema/Schema";
 import type { Post } from "~types";
 import type { Metadata } from "next";
 
-import { getPosts, getPostsByTag } from "~lib/posts";
+import { fetchAllPostsByTag, fetchAllTags } from "../../../sanity/lib/queries";
+import { sanityFetch } from "../../../sanity/lib/client";
 
 export async function generateStaticParams() {
-	const posts = await getPosts();
-	return posts.map((post: Post) => ({ slug: post.slug }));
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllTags,
+		tags: ["tags"],
+	});
+	return articles.map((article: Post) => ({ slug: article.slug.current }));
 }
 
 export const generateMetadata = async ({
@@ -42,9 +46,13 @@ export default async function Tag({
 		slug: string;
 	};
 }) {
-	const posts = await getPostsByTag(params.slug);
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllPostsByTag,
+		qParams: { slug: params.slug },
+		tags: ["tag"],
+	});
 
-	if (posts.length === 0) return notFound();
+	if (articles.length === 0) return notFound();
 
 	const schema: WithContext<WebPage> = {
 		"@context": "https://schema.org",
@@ -57,28 +65,24 @@ export default async function Tag({
 		<Layout>
 			<Schema schema={schema} />
 			<section className="prose">
-				<h1 className="capitalize">{params.slug}</h1>
-				{posts && (
+				<h1 className="capitalize">{params.slug.replace("-", " ")}</h1>
+				{articles && (
 					<ul className="pl-0">
-						{posts
-							.sort(
-								(a, b) =>
-									new Date(b.date).getTime() - new Date(a.date).getTime(),
-							)
-							.map(
-								(post) =>
-									post && (
-										<Card
-											body={post.body}
-											category={post.category}
-											key={post.slug}
-											slug={post.slug}
-											title={post.title}
-											excerpt={post.excerpt}
-											date={post.date}
-										/>
-									),
-							)}
+						{articles.map(
+							(article) =>
+								article && (
+									<Card
+										body={article.body}
+										category={article.category}
+										key={article.slug.current}
+										slug={article.slug.current}
+										title={article.title}
+										excerpt={article.excerpt}
+										date={article.publishedAt}
+										readingTime={article.estimatedReadingTime}
+									/>
+								),
+						)}
 					</ul>
 				)}
 			</section>

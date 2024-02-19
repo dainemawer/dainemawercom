@@ -1,13 +1,25 @@
+import { Tag } from "~components/Tags/Tags.types";
+
 export type Post = {
+	_id: string;
 	body: string;
 	canonical: string;
-	category: string;
-	date: string;
+	category: {
+		slug: {
+			current: string;
+		};
+		title: string;
+	};
+	estimatedReadingTime: string;
 	excerpt: string;
+	includeInSitemap: boolean;
 	lastModified: string;
+	publishedAt: string;
 	sitemap: boolean;
-	slug: string;
+	slug: {
+		current: string;
+	};
 	state: string;
-	tags: string[];
+	tags: Tag[];
 	title: string;
 };

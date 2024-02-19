@@ -2,8 +2,11 @@ import { WithContext, WebPage } from "schema-dts";
 import Layout from "~components/Layout/Layout";
 import { Card } from "~components/Card/Card";
 import { Schema } from "~components/Schema/Schema";
+import { Post } from "~types";
 
-import { getPosts, getPostPages } from "~lib/posts";
+import { sanityFetch } from "../../sanity/lib/client";
+import { fetchAllBlogPosts } from "../../sanity/lib/queries";
+
 import { Pagination } from "~components/Pagination/Pagination";
 
 export const metadata = {
@@ -27,11 +30,15 @@ export default async function Articles({
 		query?: string;
 	};
 }) {
-	const currentPage = Number(searchParams?.page) || 1;
-	const totalPages = await getPostPages();
-	const posts = await getPosts();
+	const articles: Post[] = await sanityFetch({
+		query: fetchAllBlogPosts,
+		tags: ["post"],
+	});
 
-	if (!posts) return null;
+	const currentPage = Number(searchParams?.page) || 1;
+	const totalPages = Math.ceil(articles.length / 5);
+
+	if (!articles) return null;
 
 	const schema: WithContext<WebPage> = {
 		"@context": "https://schema.org",
@@ -46,25 +53,22 @@ export default async function Articles({
 			<Schema schema={schema} />
 			<section className="prose">
 				<h1>Articles</h1>
-				{posts && (
+				{articles && (
 					<ul className="pl-0">
-						{posts
-							.sort(
-								(a, b) =>
-									new Date(b.date).getTime() - new Date(a.date).getTime(),
-							)
+						{articles
 							.slice((currentPage - 1) * 5, currentPage * 5)
 							.map(
-								(post) =>
-									post && (
+								(article) =>
+									article && (
 										<Card
-											body={post.body}
-											category={post.category}
-											key={post.slug}
-											slug={post.slug}
-											title={post.title}
-											excerpt={post.excerpt}
-											date={post.date}
+											body={article.body || "No content"}
+											category={article.category}
+											key={article._id}
+											slug={article.slug.current}
+											title={article.title}
+											excerpt={article.excerpt}
+											date={article.publishedAt}
+											readingTime={article.estimatedReadingTime}
 										/>
 									),
 							)}
