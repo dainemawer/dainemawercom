@@ -1,4 +1,6 @@
-export const fetchAllBlogPosts = `
+import { groq } from "next-sanity";
+
+export const fetchAllBlogPosts = groq`
 	*[_type == "post" && publishedAt < now()] | order(publishedAt desc) {
 		_id,
 		title,
@@ -38,7 +40,7 @@ export const fetchAllBlogPosts = `
 	}
 `;
 
-export const fetchBlogPostBySlug = `
+export const fetchBlogPostBySlug = groq`
 	*[_type == "post" && slug.current == $slug][0]{
 		title,
 		excerpt,
@@ -66,7 +68,7 @@ export const fetchBlogPostBySlug = `
 	}
 `;
 
-export const fetchAllPostsByCategory = `
+export const fetchAllPostsByCategory = groq`
 	*[_type == "post" && category.slug.current == $slug[0] && publishedAt < now()] | order(publishedAt desc) {
 		_id,
 		title,
@@ -105,7 +107,7 @@ export const fetchAllPostsByCategory = `
 	}
 `;
 
-export const fetchAllPostsByTag = `
+export const fetchAllPostsByTag = groq`
 	*[_type == "post" && tag.slug.current == $slug[0] && publishedAt < now()] | order(publishedAt desc) {
 		_id,
 		title,
@@ -144,7 +146,7 @@ export const fetchAllPostsByTag = `
 	}
 `;
 
-export const fetchAllTags = `
+export const fetchAllTags = groq`
 	*[_type == "tag"] {
 		_id,
 		title,
@@ -153,7 +155,7 @@ export const fetchAllTags = `
 	}
 `;
 
-export const fetchAllCategories = `
+export const fetchAllCategories = groq`
 	*[_type == "category"] {
 		_id,
 		title,

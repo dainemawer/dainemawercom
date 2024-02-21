@@ -7,7 +7,7 @@ const config: ClientConfig = {
 	apiVersion,
 	dataset,
 	projectId,
-	useCdn: process.env.NODE_ENV === "development" ? true : false,
+	useCdn: false,
 };
 
 export const sanityClient = createClient(config);
