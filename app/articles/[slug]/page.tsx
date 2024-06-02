@@ -168,7 +168,7 @@ export default async function SinglePost({
 			<Progress />
 			<article
 				id=""
-				className={`section is-${article.category.slug.current}-page`}
+				className={`section is-${article.category.slug.current}-page h-entry`}
 				aria-label=""
 			>
 				<Breadcrumbs
@@ -177,7 +177,7 @@ export default async function SinglePost({
 					title={article.title}
 				/>
 				<header className={styles.header}>
-					<h1>
+					<h1 className="p-name">
 						<Balancer>{article?.title}</Balancer>
 					</h1>
 					<div className="flex items-center justify-center">
@@ -188,7 +188,10 @@ export default async function SinglePost({
 							{article.category.title}
 						</Link>
 						<span className="mx-4">|</span>
-						<LocalDate dateString={article?.publishedAt} />
+						<LocalDate
+							className="dt-published"
+							dateString={article?.publishedAt}
+						/>
 						<span className="mx-4">|</span>
 						<p className={styles.readingTime}>
 							{article.estimatedReadingTime} min read
