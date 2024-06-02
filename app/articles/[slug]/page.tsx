@@ -157,62 +157,57 @@ export default async function SinglePost({
 
 	return (
 		<Layout>
-			<div className="h-entry">
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+			/>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+			/>
+			<Progress />
+			<article
+				id=""
+				className={`section is-${article.category.slug.current}-page`}
+				aria-label=""
+			>
+				<Breadcrumbs
+					category={article.category.slug.current}
+					slug={article.slug.current}
+					title={article.title}
 				/>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+				<header className={styles.header}>
+					<h1>
+						<Balancer>{article?.title}</Balancer>
+					</h1>
+					<div className="flex items-center justify-center">
+						<Link
+							className="capitalize"
+							href={`/category/${article.category.slug.current}`}
+						>
+							{article.category.title}
+						</Link>
+						<span className="mx-4">|</span>
+						<LocalDate dateString={article?.publishedAt} />
+						<span className="mx-4">|</span>
+						<p className={styles.readingTime}>
+							{article.estimatedReadingTime} min read
+						</p>
+					</div>
+				</header>
+				<TableOfContents outline={outline as any} />
+				<PortableText
+					components={components as any}
+					value={article.body as any}
 				/>
-				<Progress />
-				<article
-					id=""
-					className={`section is-${article.category.slug.current}-page e-content`}
-					aria-label=""
-				>
-					<Breadcrumbs
-						category={article.category.slug.current}
-						slug={article.slug.current}
-						title={article.title}
-					/>
-					<header className={styles.header}>
-						<h1 className="p-name">
-							<Balancer>{article?.title}</Balancer>
-						</h1>
-						<div className="flex items-center justify-center">
-							<Link
-								className="capitalize"
-								href={`/category/${article.category.slug.current}`}
-							>
-								{article.category.title}
-							</Link>
-							<span className="mx-4">|</span>
-							<LocalDate
-								className="dt-published"
-								dateString={article?.publishedAt}
-							/>
-							<span className="mx-4">|</span>
-							<p className={styles.readingTime}>
-								{article.estimatedReadingTime} min read
-							</p>
-						</div>
-					</header>
-					<TableOfContents outline={outline as any} />
-					<PortableText
-						components={components as any}
-						value={article.body as any}
-					/>
-				</article>
-				<Tags tags={article.tags} />
-				<AuthorBio
-					excerpt={article?.excerpt}
-					title={article?.excerpt}
-					slug={params.slug}
-				/>
-				<PostNavigation previous={previous} next={next} />
-			</div>
+			</article>
+			<Tags tags={article.tags} />
+			<AuthorBio
+				excerpt={article?.excerpt}
+				title={article?.excerpt}
+				slug={params.slug}
+			/>
+			<PostNavigation previous={previous} next={next} />
 		</Layout>
 	);
 }
