@@ -25,7 +25,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					my <a href="/rss">RSS feed </a> or follow me on{" "}
 					<a
 						href="https://github.com/dainemawer"
-						rel="noopener noreferrer"
+						rel="noopener noreferrer me"
 						target="_blank"
 					>
 						Github
@@ -34,7 +34,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					<a
 						href="https://twitter.com/dainemawer"
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="noopener noreferrer me"
 					>
 						Twitter
 					</a>{" "}
@@ -42,13 +42,16 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					<a
 						href="https://www.linkedin.com/in/dainemawer"
 						target="_blank"
-						rel="noopener noreferrer"
+						rel="noopener noreferrer me"
 					>
 						LinkedIn
 					</a>
 					. Im also always on the look out for new oppurtunities, engagements,
 					contract work or just coffee! So please dont hesitate to{" "}
-					<a href="mailto:hello@dainemawer.com">reach out</a>.
+					<a href="mailto:hello@dainemawer.com" rel="me">
+						reach out
+					</a>
+					.
 				</p>
 				<nav className={styles.social}>
 					<ul className={styles.nav}>
