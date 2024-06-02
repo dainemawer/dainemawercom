@@ -22,7 +22,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 				</a>
 			</figure>
 			<div className={styles.content}>
-				<p className={styles.description}>
+				<p className={classNames(styles.description, "p-note")}>
 					<strong>
 						Written by <span className="p-name">Daine Mawer</span>.
 					</strong>{" "}
