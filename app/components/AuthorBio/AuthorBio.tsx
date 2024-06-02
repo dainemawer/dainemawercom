@@ -9,12 +9,16 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 	const url = `${process.env.NEXT_PUBLIC_SITE_DOMAIN}/${slug}`;
 
 	return (
-		<div className={classNames(styles.bio, "h-card", "p-author")}>
+		<div className={classNames(styles.bio, "h-card")}>
 			<figure className={classNames(styles.figure, "u-photo")}>
-				<a className="u-url u-uid" href="https://dainemawer.com">
+				<a
+					rel="author"
+					className="u-url u-uid p-author"
+					href="https://dainemawer.com"
+				>
 					<Image
 						src="/dainemawer.jpeg"
-						alt="Profile of Daine"
+						alt="Daine Mawer"
 						width={100}
 						height={100}
 						className="rounded-full"
