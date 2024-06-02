@@ -48,7 +48,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ slug, category }) => {
 
 			<li>
 				<Link
-					className={`capitalize ${styles.anchor}`}
+					className={`capitalize p-category ${styles.anchor}`}
 					href={`/category/${category}`}
 				>
 					{category.replace("-", " ")}
