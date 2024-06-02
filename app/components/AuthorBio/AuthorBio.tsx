@@ -11,16 +11,18 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 	return (
 		<div className={classNames(styles.bio, "h-card")}>
 			<figure className={classNames(styles.figure, "u-photo")}>
-				<Image
-					src="/dainemawer.jpeg"
-					alt="Profile of Daine"
-					width={100}
-					height={100}
-					className="rounded-full"
-				/>
+				<a className="u-url u-uid" href="https://dainemawer.com">
+					<Image
+						src="/dainemawer.jpeg"
+						alt="Profile of Daine"
+						width={100}
+						height={100}
+						className="rounded-full"
+					/>
+				</a>
 			</figure>
 			<div className={styles.content}>
-				<p className={styles.description}>
+				<p className={classNames(styles.description, "p-note")}>
 					<strong>
 						Written by <span className="p-name">Daine Mawer</span>.
 					</strong>{" "}
@@ -28,6 +30,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					you read, please subscribe to my <a href="/rss">RSS feed </a> or
 					follow me on{" "}
 					<a
+						className="u-url"
 						href="https://github.com/dainemawer"
 						rel="noopener noreferrer me"
 						target="_blank"
@@ -36,6 +39,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					</a>
 					,{" "}
 					<a
+						className="u-url"
 						href="https://twitter.com/dainemawer"
 						target="_blank"
 						rel="noopener noreferrer me"
@@ -44,6 +48,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					</a>{" "}
 					or{" "}
 					<a
+						className="u-url"
 						href="https://www.linkedin.com/in/dainemawer"
 						target="_blank"
 						rel="noopener noreferrer me"
