@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import type { AuthorBioProps } from "./AuthorBio.types";
 import Image from "next/image";
+import classNames from "classnames";
 
 import styles from "./AuthorBio.module.css";
 
@@ -8,8 +9,8 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 	const url = `${process.env.NEXT_PUBLIC_SITE_DOMAIN}/${slug}`;
 
 	return (
-		<div className={styles.bio}>
-			<figure className={styles.figure}>
+		<div className={classNames(styles.bio, "h-card")}>
+			<figure className={classNames(styles.figure, "u-photo")}>
 				<Image
 					src="/dainemawer.jpeg"
 					alt="Profile of Daine"
@@ -20,9 +21,12 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 			</figure>
 			<div className={styles.content}>
 				<p className={styles.description}>
-					<strong>Written by Daine Mawer.</strong> Thanks for reading! Im always
-					posting new content. If you liked what you read, please subscribe to
-					my <a href="/rss">RSS feed </a> or follow me on{" "}
+					<strong>
+						Written by <span className="p-name">Daine Mawer</span>.
+					</strong>{" "}
+					Thanks for reading! Im always posting new content. If you liked what
+					you read, please subscribe to my <a href="/rss">RSS feed </a> or
+					follow me on{" "}
 					<a
 						href="https://github.com/dainemawer"
 						rel="noopener noreferrer me"
