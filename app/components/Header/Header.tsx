@@ -148,7 +148,11 @@ const Header: FC = () => {
 									</Link>
 								</li>
 								<li>
-									<a className="button" href="mailto:hello@dainemawer.com">
+									<a
+										className="button"
+										href="mailto:hello@dainemawer.com"
+										rel="me"
+									>
 										hello@dainemawer.com
 									</a>
 								</li>

@@ -13,7 +13,7 @@ const Footer: FC = () => {
 						<a
 							href="https://github.com/dainemawer"
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener noreferrer me"
 						>
 							<span>Github</span>
 						</a>
@@ -22,7 +22,7 @@ const Footer: FC = () => {
 						<a
 							href="https://www.linkedin.com/in/dainemawer"
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener noreferrer me"
 						>
 							<span>LinkedIn</span>
 						</a>
@@ -31,7 +31,7 @@ const Footer: FC = () => {
 						<a
 							href="https://bmc.link/dainelindleymawer"
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="noopener noreferrer me"
 						>
 							<span>Buy Me Coffee</span>
 						</a>
