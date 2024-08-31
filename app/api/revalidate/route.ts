@@ -1,7 +1,6 @@
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
-import { NextApiRequest } from "next";
 
 export const runtime = "edge";
 
@@ -9,7 +8,7 @@ export async function POST(req: NextRequest) {
 	try {
 		const { isValidSignature, body } = await parseBody<
 			BodyInit & { _type: string }
-		>(req as unknown as NextApiRequest, process.env.SANITY_REVALIDATE_SECRET);
+		>(req as unknown as NextRequest, process.env.SANITY_REVALIDATE_SECRET);
 
 		if (!isValidSignature) {
 			const message = "Invalid signature";
