@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 		description:
 			"Welcome to my uses page. Here you will find all the tools I use to get the job done on the daily.",
 		url: "https://dainemawer.com/uses",
+		siteName: "Daine Mawer",
 	},
 };
 

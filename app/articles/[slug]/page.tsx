@@ -51,6 +51,7 @@ export const generateMetadata = async ({
 			title: article?.title,
 			description: article?.excerpt,
 			url: `https://dainemawer.com/articles/${params.slug}`,
+			siteName: "Daine Mawer",
 		},
 		alternates: {
 			canonical:

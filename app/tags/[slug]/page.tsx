@@ -35,6 +35,7 @@ export const generateMetadata = async ({
 		openGraph: {
 			title: `${upperCaseTag.replace("-", " ")} | Articles`,
 			url: `https://dainemawer.com/tags/${params.slug}`,
+			siteName: "Daine Mawer",
 		},
 	};
 };

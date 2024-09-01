@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "About | What I Do",
 		url: "https://dainemawer.com/about",
+		siteName: "Daine Mawer",
 	},
 };
 

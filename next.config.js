@@ -137,15 +137,13 @@ const nextConfig = {
 };
 
 const ContentSecurityPolicy = `
-		script-src 'self' 'unsafe-eval' 'unsafe-inline' https://client.crisp.chat https://static.cloudflareinsights.com https://www.googletagmanager.com;
-		style-src 'self' 'unsafe-inline' https://client.crisp.chat https://www.googletagmanager.com https://www.google-analytics.com;
+		script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com;
+		style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
     img-src * blob: data:;
     media-src 'none';
     connect-src *;
     font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://client.crisp.chat;
 `;
-
-// default-src 'self' 'https://blog.logrocket.com'; image-src 'https://unsplash.com'; script-src 'self' https://www.google-analytics.com; font-src 'self' 'https://fonts.googleapis.com';
 
 const securityHeaders = [
 	{

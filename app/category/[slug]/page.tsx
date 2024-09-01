@@ -39,6 +39,7 @@ export const generateMetadata = async ({
 		openGraph: {
 			title: `${upperCaseCategory} | Articles`,
 			url: `https://dainemawer.com/category/${params.slug}`,
+			siteName: "Daine Mawer",
 		},
 	};
 };

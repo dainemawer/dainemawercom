@@ -21,3 +21,7 @@
 .list li > a > span {
 	@apply mr-1;
 }
+
+.whatsapp {
+	@apply flex bg-[#25D366] py-2 px-6 rounded-full gap-2 text-white fixed bottom-8 right-8 items-center text-sm transition-colors hover:bg-[#075E54];
+}
