@@ -4,7 +4,6 @@ import Image from "next/image";
 import classNames from "classnames";
 
 import styles from "./AuthorBio.module.css";
-import Link from "next/link";
 
 export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 	const url = `${process.env.NEXT_PUBLIC_SITE_DOMAIN}/${slug}`;
@@ -31,12 +30,9 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					<strong>
 						Written by <span className="p-name">Daine Mawer</span>.
 					</strong>{" "}
-					Enjoy reading the{" "}
-					<Link className="u-url" href={slug}>
-						article
-					</Link>
-					? Im always posting new content. If you liked what you read, please
-					subscribe to my <a href="/rss">RSS feed </a> or follow me on{" "}
+					Enjoy reading the article? Im always posting new content. If you liked
+					what you read, please subscribe to my <a href="/rss">RSS feed </a> or
+					follow me on{" "}
 					<a
 						className="u-url"
 						href="https://github.com/dainemawer"
