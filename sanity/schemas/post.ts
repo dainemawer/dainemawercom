@@ -25,6 +25,13 @@ export default defineType({
 			type: "url",
 		}),
 		defineField({
+			name: "metaDescription",
+			title: "Meta Description",
+			type: "text",
+			description:
+				"Override the default meta description for SEO. If left empty, the excerpt will be used.",
+		}),
+		defineField({
 			name: "excerpt",
 			title: "Excerpt",
 			type: "text",
@@ -62,6 +69,12 @@ export default defineType({
 			name: "body",
 			title: "Body",
 			type: "blockContent",
+		}),
+		defineField({
+			name: "seo",
+			title: "SEO & Social Sharing",
+			type: "articleMetadata",
+			description: "Additional metadata for SEO and social sharing",
 		}),
 	],
 
