@@ -5,61 +5,40 @@ import styles from "./Footer.module.css";
 
 const Footer: FC = () => {
 	return (
-		<>
-			<footer className={styles.footer}>
-				<p className={styles.copyright}>Copyright &copy; 2023 Daine Mawer.</p>
-				<nav id="" aria-label="">
-					<ul className={styles.list}>
-						<li>
-							<a
-								href="https://github.com/dainemawer"
-								target="_blank"
-								rel="noopener noreferrer me"
-							>
-								<span>Github</span>
-							</a>
-						</li>
-						<li>
-							<a
-								href="https://www.linkedin.com/in/dainemawer"
-								target="_blank"
-								rel="noopener noreferrer me"
-							>
-								<span>LinkedIn</span>
-							</a>
-						</li>
-						<li>
-							<a
-								href="https://bmc.link/dainelindleymawer"
-								target="_blank"
-								rel="noopener noreferrer me"
-							>
-								<span>Buy Me Coffee</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</footer>
-			<a
-				aria-label="Chat on Whatsapp"
-				className={styles.whatsapp}
-				href="https://wa.me/27829742609"
-			>
-				<svg
-					width="18"
-					height="18"
-					viewBox="0 0 83 83"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M41.5 0.000127903C30.4984 0.0111547 19.9503 4.38586 12.1702 12.1644C4.39008 19.943 0.0132598 30.4901 2.35867e-05 41.4918C-0.00830975 49.3251 2.19169 56.9585 6.34169 63.5668L7.32502 65.1335L3.13336 80.4418L18.8417 76.3251L20.35 77.2251C26.746 81.0107 34.0427 83.0054 41.475 83.0001H41.4834C52.4815 82.9847 63.0248 78.6095 70.8024 70.8334C78.58 63.0573 82.9574 52.5149 82.975 41.5168C82.9941 36.0653 81.9315 30.6642 79.8488 25.6262C77.7661 20.5882 74.7046 16.0135 70.8417 12.1668C66.9988 8.29885 62.4266 5.23183 57.39 3.14337C52.3534 1.05492 46.9524 -0.0134549 41.5 0.000127903ZM65.9 59.3168C64.8584 62.2335 59.875 64.8835 57.4834 65.2418C54.8615 65.6939 52.1701 65.5255 49.625 64.7501C47.2105 64.0024 44.8377 63.1262 42.5167 62.1251C30 56.7251 21.8334 44.1335 21.2 43.2918C20.5834 42.4585 16.1167 36.5251 16.1167 30.3918C16.1167 24.2501 19.3334 21.2335 20.475 19.9835C20.8942 19.5098 21.4066 19.1277 21.9801 18.861C22.5537 18.5943 23.176 18.4488 23.8084 18.4335C24.6417 18.4335 25.4667 18.4418 26.2 18.4751C26.9667 18.5085 27.9917 18.1835 29 20.6168C30.0417 23.1168 32.5417 29.2501 32.85 29.8751C33.1584 30.4918 33.3667 31.2251 32.9584 32.0585C32.5417 32.9001 32.3417 33.4085 31.7084 34.1418C31.0917 34.8751 30.4 35.7668 29.8417 36.3335C29.2167 36.9501 28.5667 37.6251 29.2917 38.8751C30.025 40.1168 32.525 44.2085 36.225 47.5168C40.9917 51.7668 45.0167 53.0751 46.2584 53.7085C47.5084 54.3251 48.2334 54.2335 48.9667 53.3918C49.6917 52.5501 52.0834 49.7501 52.9167 48.5085C53.75 47.2585 54.575 47.4668 55.725 47.8751C56.8667 48.3001 63 51.3085 64.2417 51.9335C65.475 52.5501 66.3167 52.8668 66.6334 53.3918C66.9334 53.9085 66.9334 56.4001 65.9 59.3168Z"
-						fill="white"
-					/>
-				</svg>
-				<span>Chat</span>
-			</a>
-		</>
+		<footer className={styles.footer}>
+			<p className={styles.copyright}>Copyright &copy; 2023 Daine Mawer.</p>
+			<nav id="" aria-label="">
+				<ul className={styles.list}>
+					<li>
+						<a
+							href="https://github.com/dainemawer"
+							target="_blank"
+							rel="noopener noreferrer me"
+						>
+							<span>Github</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.linkedin.com/in/dainemawer"
+							target="_blank"
+							rel="noopener noreferrer me"
+						>
+							<span>LinkedIn</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://bmc.link/dainelindleymawer"
+							target="_blank"
+							rel="noopener noreferrer me"
+						>
+							<span>Buy Me Coffee</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	);
 };
 

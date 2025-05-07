@@ -16,6 +16,7 @@ import { Breadcrumbs } from "~components/Breadcrumbs/Breadcrumbs";
 import { Tags } from "~components/Tags/Tags";
 import { TableOfContents } from "~components/TableOfContents/TableOfContents";
 import { PortableText } from "@portabletext/react";
+import { FAQ } from "~components/FAQ/FAQ";
 
 import styles from "./article.module.css";
 
@@ -23,6 +24,9 @@ import { sanityFetch } from "../../../sanity/lib/client";
 import { fetchAllBlogPosts } from "../../../sanity/lib/queries";
 
 import { parseOutline } from "~lib/outline";
+
+type OpenGraphType = "article" | "website" | "book" | "profile" | "video.other";
+type TwitterCardType = "summary" | "summary_large_image" | "app" | "player";
 
 export async function generateStaticParams() {
 	const articles: Post[] = await sanityFetch({
@@ -44,14 +48,42 @@ export const generateMetadata = async ({
 		tags: ["post"],
 	});
 	const article = articles.find((a) => a.slug.current === params.slug);
+	const description = article?.metaDescription || article?.excerpt;
+	const keywords = article?.seo?.keywords?.join(", ");
+	const ogImage = article?.seo?.socialSharing?.ogImage?.asset?.url;
+	const twitterCard = (article?.seo?.socialSharing?.twitterCard ||
+		"summary_large_image") as TwitterCardType;
+
+	// Map article type to OpenGraph type
+	const getOpenGraphType = (type?: string): OpenGraphType => {
+		switch (type?.toLowerCase()) {
+			case "blogposting":
+			case "newsarticle":
+			case "techarticle":
+			case "howto":
+				return "article";
+			default:
+				return "article";
+		}
+	};
+
 	return {
 		title: article?.title,
-		description: article?.excerpt,
+		description,
+		keywords,
 		openGraph: {
 			title: article?.title,
-			description: article?.excerpt,
+			description,
 			url: `https://dainemawer.com/articles/${params.slug}`,
 			siteName: "Daine Mawer",
+			images: ogImage ? [{ url: ogImage }] : undefined,
+			type: getOpenGraphType(article?.seo?.structuredData?.articleType),
+		},
+		twitter: {
+			card: twitterCard,
+			title: article?.title,
+			description,
+			images: ogImage ? [ogImage] : undefined,
 		},
 		alternates: {
 			canonical:
@@ -72,6 +104,11 @@ const components = {
 				<Code lang={props.value.language} lineNumbers>
 					{props.value.code as any}
 				</Code>
+			);
+		},
+		faq: (props: any) => {
+			return (
+				<FAQ question={props.value.question} answer={props.value.answer} />
 			);
 		},
 	},
