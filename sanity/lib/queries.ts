@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 
 export const fetchAllBlogPosts = groq`
-	*[_type == "post" && publishedAt < now()] | order(publishedAt desc) {
+	*[_type == "post"] | order(publishedAt desc) {
 		_id,
 		title,
 		slug,
