@@ -7,7 +7,12 @@ const config: ClientConfig = {
 	apiVersion,
 	dataset,
 	projectId,
-	useCdn: false,
+	useCdn: true, // Enable CDN for better performance
+	perspective: "published",
+	timeout: 30000, // 30 seconds
+	stega: {
+		enabled: false,
+	},
 };
 
 export const sanityClient = createClient(config);
@@ -21,8 +26,15 @@ export async function sanityFetch<QueryResponse>({
 	query: string;
 	tags: string[];
 }): Promise<QueryResponse> {
-	return sanityClient.fetch<QueryResponse>(query, qParams, {
-		cache: "no-store",
-		next: { tags },
-	});
+	try {
+		return await sanityClient.fetch<QueryResponse>(query, qParams, {
+			next: {
+				tags,
+				revalidate: 3600 // Revalidate every hour
+			},
+		});
+	} catch (error) {
+		console.error("Sanity fetch error:", error);
+		throw error;
+	}
 }
