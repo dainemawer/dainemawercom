@@ -11,7 +11,22 @@
 
 import { NextStudio } from "next-sanity/studio";
 import config from "../../../sanity.config";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import the studio with no SSR
+const Studio = dynamic(
+	() => import("next-sanity/studio").then((mod) => mod.NextStudio),
+	{
+		ssr: false,
+		loading: () => <div>Loading Sanity Studio...</div>,
+	},
+);
 
 export default function StudioPage() {
-	return <NextStudio config={config} />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<Studio config={config} />
+		</Suspense>
+	);
 }

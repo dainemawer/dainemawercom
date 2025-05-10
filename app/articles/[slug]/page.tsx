@@ -111,6 +111,23 @@ const components = {
 				<FAQ question={props.value.question} answer={props.value.answer} />
 			);
 		},
+		image: ({ value }: any) => {
+			return (
+				<figure className="my-8">
+					<img
+						src={value.asset.url}
+						alt={value.alt || ""}
+						className="rounded-lg"
+						loading="lazy"
+					/>
+					{value.caption && (
+						<figcaption className="mt-2 text-center text-sm text-gray-500">
+							{value.caption}
+						</figcaption>
+					)}
+				</figure>
+			);
+		},
 	},
 };
 
