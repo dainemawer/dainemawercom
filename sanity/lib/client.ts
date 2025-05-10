@@ -30,7 +30,7 @@ export async function sanityFetch<QueryResponse>({
 		return await sanityClient.fetch<QueryResponse>(query, qParams, {
 			next: {
 				tags,
-				revalidate: 3600 // Revalidate every hour
+				revalidate: 0 // Disable caching for immediate updates
 			},
 		});
 	} catch (error) {
