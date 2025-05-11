@@ -3,6 +3,7 @@ import {
 	fetchAllBlogPosts,
 	fetchAllTags,
 	fetchAllCategories,
+	fetchAllGuides,
 } from "../sanity/lib/queries";
 import { sanityFetch } from "../sanity/lib/client";
 
@@ -10,6 +11,11 @@ export default async function sitemap() {
 	const posts: Post[] = await sanityFetch({
 		query: fetchAllBlogPosts,
 		tags: ["post"],
+	});
+
+	const guides: Post[] = await sanityFetch({
+		query: fetchAllGuides,
+		tags: ["guide"],
 	});
 
 	const tags: [] = await sanityFetch({
@@ -31,6 +37,15 @@ export default async function sitemap() {
 				: new Date().toISOString().split("T")[0],
 		}));
 
+	const guidesUrls = guides
+		.filter((guide) => guide.includeInSitemap)
+		.map((guide: Post) => ({
+			url: `https://dainemawer.com/guides/${guide.slug.current}`,
+			lastModified: guide.lastModified
+				? new Date(guide.lastModified).toISOString().split("T")[0]
+				: new Date().toISOString().split("T")[0],
+		}));
+
 	const categories = category.map((post: Post) => ({
 		url: `https://dainemawer.com/category/${post.slug.current}`,
 		lastModified: new Date().toISOString().split("T")[0],
@@ -41,10 +56,10 @@ export default async function sitemap() {
 		lastModified: new Date().toISOString().split("T")[0],
 	}));
 
-	const routes = ["", "/about", "/articles"].map((route) => ({
+	const routes = ["", "/about", "/articles", "/guides"].map((route) => ({
 		url: `https://dainemawer.com${route}`,
 		lastModified: new Date().toISOString().split("T")[0],
 	}));
 
-	return [...routes, ...articles, ...categories, ...postTags];
+	return [...routes, ...articles, ...guidesUrls, ...categories, ...postTags];
 }

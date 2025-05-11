@@ -16,8 +16,12 @@ export default function robots(): MetadataRoute.Robots {
 				disallow: "/*?portfolio=",
 			},
 			{
-				userAgent: "Googlebot",
-				disallow: "/api/outstatic/login",
+				userAgent: "*",
+				disallow: "/studio",
+			},
+			{
+				userAgent: "*",
+				disallow: "/studio/*",
 			},
 			{
 				userAgent: "*",
