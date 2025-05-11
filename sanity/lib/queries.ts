@@ -163,3 +163,41 @@ export const fetchAllCategories = groq`
 		slug
 	}
 `;
+
+export const fetchAllGuides = groq`
+	*[_type == "guide"] | order(publishedAt desc) {
+		_id,
+		title,
+		slug,
+		excerpt,
+		publishedAt,
+		estimatedReadingTime,
+		tags[]->{
+			title,
+			slug
+		},
+		"numberOfCharacters": length(pt::text(body)),
+		"estimatedWordCount": round(length(pt::text(body)) / 5),
+		"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ),
+		body
+	}
+`;
+
+export const fetchGuideBySlug = groq`
+	*[_type == "guide" && slug.current == $slug][0] {
+		_id,
+		title,
+		slug,
+		excerpt,
+		publishedAt,
+		estimatedReadingTime,
+		metaDescription,
+		seo,
+		canonical,
+		tags[]->{
+			title,
+			slug
+		},
+		body
+	}
+`;

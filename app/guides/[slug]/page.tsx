@@ -19,24 +19,22 @@ import { TableOfContents } from "~components/TableOfContents/TableOfContents";
 import { PortableText } from "@portabletext/react";
 import { FAQ } from "~components/FAQ/FAQ";
 
-import styles from "./article.module.css";
+import styles from "./guide.module.css";
 
 import { sanityFetch } from "../../../sanity/lib/client";
-import { fetchAllBlogPosts } from "../../../sanity/lib/queries";
+import { fetchAllGuides, fetchGuideBySlug } from "../../../sanity/lib/queries";
 
 import { parseOutline } from "~lib/outline";
 
 type OpenGraphType = "article" | "website" | "book" | "profile" | "video.other";
 type TwitterCardType = "summary" | "summary_large_image" | "app" | "player";
 
-export const revalidate = 3600; // Revalidate every hour
-
 export async function generateStaticParams() {
-	const articles: Post[] = await sanityFetch({
-		query: fetchAllBlogPosts,
-		tags: ["post"],
+	const guides: Post[] = await sanityFetch({
+		query: fetchAllGuides,
+		tags: ["guide"],
 	});
-	return articles.map((article: Post) => ({ slug: article.slug.current }));
+	return guides.map((guide: Post) => ({ slug: guide.slug.current }));
 }
 
 export const generateMetadata = async ({
@@ -46,18 +44,17 @@ export const generateMetadata = async ({
 		slug: string;
 	};
 }): Promise<Metadata> => {
-	const articles: Post[] = await sanityFetch({
-		query: fetchAllBlogPosts,
-		tags: ["post"],
+	const guides: Post[] = await sanityFetch({
+		query: fetchAllGuides,
+		tags: ["guide"],
 	});
-	const article = articles.find((a) => a.slug.current === params.slug);
-	const description = article?.metaDescription || article?.excerpt;
-	const keywords = article?.seo?.keywords?.join(", ");
-	const ogImage = article?.seo?.socialSharing?.ogImage?.asset?.url;
-	const twitterCard = (article?.seo?.socialSharing?.twitterCard ||
+	const guide = guides.find((g) => g.slug.current === params.slug);
+	const description = guide?.metaDescription || guide?.excerpt;
+	const keywords = guide?.seo?.keywords?.join(", ");
+	const ogImage = guide?.seo?.socialSharing?.ogImage?.asset?.url;
+	const twitterCard = (guide?.seo?.socialSharing?.twitterCard ||
 		"summary_large_image") as TwitterCardType;
 
-	// Map article type to OpenGraph type
 	const getOpenGraphType = (type?: string): OpenGraphType => {
 		switch (type?.toLowerCase()) {
 			case "blogposting":
@@ -71,26 +68,26 @@ export const generateMetadata = async ({
 	};
 
 	return {
-		title: article?.title,
+		title: guide?.title,
 		description,
 		keywords,
 		openGraph: {
-			title: article?.title,
+			title: guide?.title,
 			description,
-			url: `https://dainemawer.com/articles/${params.slug}`,
+			url: `https://dainemawer.com/guides/${params.slug}`,
 			siteName: "Daine Mawer",
 			images: ogImage ? [{ url: ogImage }] : undefined,
-			type: getOpenGraphType(article?.seo?.structuredData?.articleType),
+			type: getOpenGraphType(guide?.seo?.structuredData?.articleType),
 		},
 		twitter: {
 			card: twitterCard,
-			title: article?.title,
+			title: guide?.title,
 			description,
 			images: ogImage ? [ogImage] : undefined,
 		},
 		alternates: {
 			canonical:
-				article?.canonical || `https://dainemawer.com/articles/${params.slug}`,
+				guide?.canonical || `https://dainemawer.com/guides/${params.slug}`,
 		},
 	};
 };
@@ -143,53 +140,52 @@ const components = {
 };
 
 async function getData({ slug }: { slug: string }) {
-	const articles: Post[] = await sanityFetch({
-		query: fetchAllBlogPosts,
-		tags: ["post"],
+	const guides: Post[] = await sanityFetch({
+		query: fetchAllGuides,
+		tags: ["guide"],
 	});
 
-	const currentArticle = articles.findIndex((a) => a.slug.current === slug);
-	const article = articles[currentArticle];
-	const { ...rest } = article;
+	const currentGuide = guides.findIndex((g) => g.slug.current === slug);
+	const guide = guides[currentGuide];
+	const { ...rest } = guide;
 
-	const previous = articles[currentArticle + 1];
-	const next = articles[currentArticle - 1];
+	const previous = guides[currentGuide + 1];
+	const next = guides[currentGuide - 1];
 
 	return {
 		previous,
 		next,
-		article,
+		guide,
 		...rest,
 	};
 }
 
-export default async function SinglePost({
+export default async function SingleGuide({
 	params,
 }: {
 	params: {
 		slug: string;
 	};
 }) {
-	const { article, previous, next } = await getData(params);
-	const outline = parseOutline(article?.body);
+	const { guide, previous, next } = await getData(params);
+	const outline = parseOutline(guide?.body);
 
-	if (!article) return notFound();
+	if (!guide) return notFound();
 
 	const schema: WithContext<BlogPosting> = {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
-		headline: `${article?.title}`,
-		alternativeHeadline: `${article?.title}`,
+		headline: `${guide?.title}`,
+		alternativeHeadline: `${guide?.title}`,
 		image: "http://dainemawer.com/opengraph.jpg",
-		timeRequired: `{article?.estimatedReadingTime} min read`,
+		timeRequired: `{guide?.estimatedReadingTime} min read`,
 		editor: "Daine Mawer",
 		publisher: "Daine Mawer",
-		url: `https://dainemawer.com/${params.slug}`,
-		datePublished: `${article?.publishedAt}`,
-		dateCreated: `${article?.publishedAt}`,
-		dateModified: `${article?.publishedAt}`,
-		description: `${article?.excerpt}`,
-		// articleBody: `${post?.body}`,
+		url: `https://dainemawer.com/guides/${params.slug}`,
+		datePublished: `${guide?.publishedAt}`,
+		dateCreated: `${guide?.publishedAt}`,
+		dateModified: `${guide?.publishedAt}`,
+		description: `${guide?.excerpt}`,
 		author: {
 			"@type": "Person",
 			name: "Daine Mawer",
@@ -209,14 +205,14 @@ export default async function SinglePost({
 			{
 				"@type": "ListItem",
 				position: 2,
-				name: "Articles",
-				item: "https://dainemawer.com/articles",
+				name: "Guides",
+				item: "https://dainemawer.com/guides",
 			},
 			{
 				"@type": "ListItem",
 				position: 3,
-				name: `${article.category.title}`,
-				item: `https://dainemawer.com/category/${article.category.slug.current}`,
+				name: `${guide.category.title}`,
+				item: `https://dainemawer.com/category/${guide.category.slug.current}`,
 			},
 		],
 	};
@@ -224,20 +220,6 @@ export default async function SinglePost({
 	return (
 		<Layout>
 			<div className="h-entry">
-				{/* Preload critical resources */}
-				<link
-					rel="preload"
-					href={article.seo?.socialSharing?.ogImage?.asset?.url}
-					as="image"
-				/>
-				<link
-					rel="preload"
-					href="/fonts/inter-var.woff2"
-					as="font"
-					type="font/woff2"
-					crossOrigin="anonymous"
-				/>
-
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -249,46 +231,46 @@ export default async function SinglePost({
 				<Progress />
 				<article
 					id=""
-					className={`section is-${article.category.slug.current}-page e-content`}
+					className={`section is-${guide.category.slug.current}-page e-content`}
 					aria-label=""
 				>
 					<Breadcrumbs
-						category={article.category.slug.current}
-						slug={article.slug.current}
-						title={article.title}
+						category={guide.category.slug.current}
+						slug={guide.slug.current}
+						title={guide.title}
 					/>
 					<header className={styles.header}>
 						<h1 className="p-name">
-							<Balancer>{article?.title}</Balancer>
+							<Balancer>{guide?.title}</Balancer>
 						</h1>
 						<div className="flex items-center justify-center">
 							<Link
 								className="capitalize"
-								href={`/category/${article.category.slug.current}`}
+								href={`/category/${guide.category.slug.current}`}
 							>
-								{article.category.title}
+								{guide.category.title}
 							</Link>
 							<span className="mx-4">|</span>
 							<LocalDate
 								className="dt-published"
-								dateString={article?.publishedAt}
+								dateString={guide?.publishedAt}
 							/>
 							<span className="mx-4">|</span>
 							<p className={styles.readingTime}>
-								{article.estimatedReadingTime} min read
+								{guide.estimatedReadingTime} min read
 							</p>
 						</div>
 					</header>
 					<TableOfContents outline={outline as any} />
 					<PortableText
 						components={components as any}
-						value={article.body as any}
+						value={guide.body as any}
 					/>
 				</article>
-				<Tags tags={article.tags} />
+				<Tags tags={guide.tags} />
 				<AuthorBio
-					excerpt={article?.excerpt}
-					title={article?.excerpt}
+					excerpt={guide?.excerpt}
+					title={guide?.excerpt}
 					slug={params.slug}
 				/>
 				<PostNavigation previous={previous} next={next} />
