@@ -4,8 +4,6 @@ import Image from "next/image";
 import Layout from "~components/Layout/Layout";
 import { Recommendations } from "~components/Recommendations/Recommendations";
 
-import styles from "./about.module.css";
-
 export const metadata: Metadata = {
 	title: "About | What I Do",
 	description:
@@ -35,9 +33,9 @@ export default function About() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
 			/>
-			<section className="section">
-				<header className={styles.header}>
-					<figure className={styles.figure}>
+			<section className="prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 hover:prose-a:underline prose-a:no-underline max-w-none lg:prose-lg">
+				<header className="flex items-center justify-center text-center">
+					<figure className="mr-4">
 						<Image
 							src="/dainemawer.jpeg"
 							alt="Daine in Iceland"
@@ -79,10 +77,10 @@ export default function About() {
 					and making sure clients and teams are on the same wavelength.
 				</p>
 
-				<section className={`${styles.resume} not-prose`}>
-					<h4 className="font-bold">Looking for my resume?</h4>
+				<section className="bg-slate-50 p-8 text-center border-b-4 border-black not-prose">
+					<h4 className="font-bold mt-0 mb-4">Looking for my resume?</h4>
 					<a
-						className={styles.button}
+						className="transition-colors text-sm bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded"
 						href="https://www.linkedin.com/resume-builder/urn:li:fsd_memberResume:67120068/"
 						target="_blank"
 						rel="noopener noreferrer"

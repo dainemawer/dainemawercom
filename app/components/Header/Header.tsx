@@ -18,7 +18,7 @@ const Header: FC = () => {
 	function handleClick() {
 		setIsDrawerOpen(!isDrawerOpen);
 		drawerRef.current?.classList.add("animating");
-		document.body.classList.toggle("drawer-open");
+		document.body.classList.toggle("overflow-hidden");
 	}
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ const Header: FC = () => {
 		function handleEscapeClick(event: KeyboardEvent) {
 			if (event.key === "Escape") {
 				setIsDrawerOpen(false);
-				document.body.classList.remove("drawer-open");
+				document.body.classList.remove("overflow-hidden");
 			}
 		}
 
@@ -50,7 +50,7 @@ const Header: FC = () => {
 				!buttonRef.current?.contains(event.target as Node)
 			) {
 				setIsDrawerOpen(false);
-				document.body.classList.remove("drawer-open");
+				document.body.classList.remove("overflow-hidden");
 			}
 		}
 

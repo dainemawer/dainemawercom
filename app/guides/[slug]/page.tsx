@@ -19,8 +19,6 @@ import { TableOfContents } from "~components/TableOfContents/TableOfContents";
 import { PortableText } from "@portabletext/react";
 import { FAQ } from "~components/FAQ/FAQ";
 
-import styles from "./guide.module.css";
-
 import { sanityFetch } from "../../../sanity/lib/client";
 import { fetchAllGuides, fetchGuideBySlug } from "../../../sanity/lib/queries";
 
@@ -239,7 +237,7 @@ export default async function SingleGuide({
 						slug={guide.slug.current}
 						title={guide.title}
 					/>
-					<header className={styles.header}>
+					<header className="mb-8 text-center">
 						<h1 className="p-name">
 							<Balancer>{guide?.title}</Balancer>
 						</h1>
@@ -256,7 +254,7 @@ export default async function SingleGuide({
 								dateString={guide?.publishedAt}
 							/>
 							<span className="mx-4">|</span>
-							<p className={styles.readingTime}>
+							<p className="text-sm text-gray-500">
 								{guide.estimatedReadingTime} min read
 							</p>
 						</div>

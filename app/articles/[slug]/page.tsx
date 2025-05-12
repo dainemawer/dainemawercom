@@ -19,8 +19,6 @@ import { TableOfContents } from "~components/TableOfContents/TableOfContents";
 import { PortableText } from "@portabletext/react";
 import { FAQ } from "~components/FAQ/FAQ";
 
-import styles from "./article.module.css";
-
 import { sanityFetch } from "../../../sanity/lib/client";
 import { fetchAllBlogPosts } from "../../../sanity/lib/queries";
 
@@ -257,7 +255,7 @@ export default async function SinglePost({
 						slug={article.slug.current}
 						title={article.title}
 					/>
-					<header className={styles.header}>
+					<header className="text-center">
 						<h1 className="p-name">
 							<Balancer>{article?.title}</Balancer>
 						</h1>
@@ -274,7 +272,7 @@ export default async function SinglePost({
 								dateString={article?.publishedAt}
 							/>
 							<span className="mx-4">|</span>
-							<p className={styles.readingTime}>
+							<p className="m-0">
 								{article.estimatedReadingTime} min read
 							</p>
 						</div>
