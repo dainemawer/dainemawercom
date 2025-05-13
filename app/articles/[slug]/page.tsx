@@ -272,7 +272,9 @@ export default async function SinglePost({
 								dateString={article?.publishedAt}
 							/>
 							<span className="mx-4">|</span>
-							<p className="not-prose m-0">{article.estimatedReadingTime} min read</p>
+							<p className="not-prose m-0">
+								{article.estimatedReadingTime} min read
+							</p>
 						</div>
 					</header>
 					<TableOfContents outline={outline as any} />
