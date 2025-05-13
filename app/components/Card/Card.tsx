@@ -3,8 +3,6 @@ import type { CardProps } from "./Card.types";
 import Link from "next/link";
 import { LocalDate } from "~components/LocalDate/LocalDate";
 
-import styles from "./Card.module.css";
-
 export const Card: FC<CardProps> = ({
 	category,
 	slug,
@@ -14,9 +12,14 @@ export const Card: FC<CardProps> = ({
 	readingTime,
 }) => {
 	return (
-		<article id="" aria-label="" className={styles.article}>
+		<article id="" aria-label="" className="relative">
 			<h3>
-				<Link href={`/articles/${slug}`}>{title}</Link>
+				<Link
+					className="hover:text-blue-600 transition-colors focus:text-blue-600 focus:outline-none after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:block"
+					href={`/articles/${slug}`}
+				>
+					{title}
+				</Link>
 			</h3>
 			<p>{excerpt}</p>
 			<ul className="flex list-none p-0 m-0 not-prose">

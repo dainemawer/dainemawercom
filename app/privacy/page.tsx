@@ -33,7 +33,7 @@ export default function Privacy() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
 			/>
-			<section className="section">
+			<section className="prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 hover:prose-a:underline prose-a:no-underline max-w-none lg:prose-lg">
 				<h1>Privacy</h1>
 				<p>
 					Daine Mawer&apos;s Privacy Policy is designed to help you understand

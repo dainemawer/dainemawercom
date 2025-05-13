@@ -3,8 +3,6 @@ import type { GuideCardProps } from "./GuideCard.types";
 import Link from "next/link";
 import { LocalDate } from "~components/LocalDate/LocalDate";
 
-import styles from "./GuideCard.module.css";
-
 export const GuideCard: FC<GuideCardProps> = ({
 	slug,
 	title,
@@ -13,11 +11,16 @@ export const GuideCard: FC<GuideCardProps> = ({
 	readingTime,
 }) => {
 	return (
-		<article id="" aria-label="" className={styles.article}>
-			<h3>
-				<Link href={`/guides/${slug}`}>{title}</Link>
+		<article id="" aria-label="" className="mb-8">
+			<h3 className="text-2xl font-bold mb-2">
+				<Link
+					href={`/guides/${slug}`}
+					className="text-blue-600 hover:text-blue-800"
+				>
+					{title}
+				</Link>
 			</h3>
-			<p>{excerpt}</p>
+			<p className="text-gray-600 mb-4">{excerpt}</p>
 			<ul className="flex list-none p-0 m-0 not-prose">
 				{date && (
 					<li className="p-0">

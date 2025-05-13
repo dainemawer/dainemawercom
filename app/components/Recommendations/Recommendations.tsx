@@ -2,18 +2,19 @@ import type { FC } from "react";
 import type { RecommendationsProps } from "./Recommendations.types";
 import Image from "next/image";
 
-import styles from "./Recommendations.module.css";
-
 export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 	return (
 		<section>
 			<h2>{title}</h2>
-			<div className={styles.recommendations}>
-				<article className={styles.recommendation} id="">
-					<header className={styles.header}>
-						<figure>
+			<div className="flex flex-nowrap overflow-auto gap-8">
+				<article
+					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					id=""
+				>
+					<header className="flex flex-wrap items-center mb-4">
+						<figure className="mb-2 lg:m-0">
 							<Image
-								className={styles.profile}
+								className="rounded-full mr-4"
 								src="/mike-recommendation.jpeg"
 								width="60"
 								height="60"
@@ -21,11 +22,15 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 							/>
 						</figure>
 						<div>
-							<h3>Mike Bal</h3>
-							<p>Product Leader - Growth | Product Market Fit</p>
+							<h3 className="text-base font-semibold text-slate-900 m-0">
+								Mike Bal
+							</h3>
+							<p className="text-sm text-gray-500 leading-normal m-0">
+								Product Leader - Growth | Product Market Fit
+							</p>
 						</div>
 					</header>
-					<p>
+					<p className="text-sm text-gray-500 leading-normal m-0">
 						I was lucky enough to have Daine on my team when he started at 10up
 						and in different dynamics for the years after as we both advanced
 						our careers. I&apos;ve always been impressed with the high standards
@@ -36,11 +41,14 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 						their engineering team.
 					</p>
 				</article>
-				<article className={styles.recommendation} id="">
-					<header className={styles.header}>
-						<figure>
+				<article
+					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					id=""
+				>
+					<header className="flex flex-wrap items-center mb-4">
+						<figure className="mb-2 lg:m-0">
 							<Image
-								className={styles.profile}
+								className="rounded-full mr-4"
 								src="/tim-recommendation.jpeg"
 								width="60"
 								height="60"
@@ -48,11 +56,15 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 							/>
 						</figure>
 						<div>
-							<h3>Tim Hoang</h3>
-							<p>Senior Talent Acquisition Strategy</p>
+							<h3 className="text-base font-semibold text-slate-900 m-0">
+								Tim Hoang
+							</h3>
+							<p className="text-sm text-gray-500 leading-normal m-0">
+								Senior Talent Acquisition Strategy
+							</p>
 						</div>
 					</header>
-					<p>
+					<p className="text-sm text-gray-500 leading-normal m-0">
 						During my tenure there, I was able to watch Daine grow and flourish
 						as he rose up the proverbial ranks. Something I always appreciated
 						about Daine was his curiosity and hunger to learn more and do
@@ -63,11 +75,14 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 						Daine possesses both.
 					</p>
 				</article>
-				<article className={styles.recommendation} id="">
-					<header className={styles.header}>
-						<figure>
+				<article
+					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					id=""
+				>
+					<header className="flex flex-wrap items-center mb-4">
+						<figure className="mb-2 lg:m-0">
 							<Image
-								className={styles.profile}
+								className="rounded-full mr-4"
 								src="/matt-recommendation.jpeg"
 								width="60"
 								height="60"
@@ -75,11 +90,15 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 							/>
 						</figure>
 						<div>
-							<h3>Matthew McAchran</h3>
-							<p>Lead Software Engineer</p>
+							<h3 className="text-base font-semibold text-slate-900 m-0">
+								Matthew McAchran
+							</h3>
+							<p className="text-sm text-gray-500 leading-normal m-0">
+								Lead Software Engineer
+							</p>
 						</div>
 					</header>
-					<p>
+					<p className="text-sm text-gray-500 leading-normal m-0">
 						I had the pleasure of working with Daine during my time at 10up.
 						During that time we collaborated on several projects, the biggest
 						being a complex site utilizing Salesforce APIs as an authentication
@@ -89,11 +108,14 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 						Daine and he will be an asset to any company!
 					</p>
 				</article>
-				<article className={styles.recommendation} id="">
-					<header className={styles.header}>
-						<figure>
+				<article
+					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					id=""
+				>
+					<header className="flex flex-wrap items-center mb-4">
+						<figure className="mb-2 lg:m-0">
 							<Image
-								className={styles.profile}
+								className="rounded-full mr-4"
 								src="/byron-recommendation.jpeg"
 								width="60"
 								height="60"
@@ -101,11 +123,15 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 							/>
 						</figure>
 						<div>
-							<h3>Byron Mawer</h3>
-							<p>Associate at JG Afrika</p>
+							<h3 className="text-base font-semibold text-slate-900 m-0">
+								Byron Mawer
+							</h3>
+							<p className="text-sm text-gray-500 leading-normal m-0">
+								Associate at JG Afrika
+							</p>
 						</div>
 					</header>
-					<p>
+					<p className="text-sm text-gray-500 leading-normal m-0">
 						Daine has throughout his career managed and produced web platforms
 						for Client&apos;s of mine, as well as myself. He has a talent for
 						learning and adapting to current trends in industry, and producing

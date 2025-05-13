@@ -1,7 +1,7 @@
 import { defineType } from "sanity";
 
 export default defineType({
-	name: "code",
+	name: "customCode",
 	title: "Code Block",
 	type: "object",
 	fields: [
@@ -26,8 +26,8 @@ export default defineType({
 			},
 		},
 		{
-			name: "code",
-			title: "Code",
+			name: "content",
+			title: "Code Content",
 			type: "text",
 		},
 	],

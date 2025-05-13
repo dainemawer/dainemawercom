@@ -3,13 +3,13 @@ import type { LayoutProps } from "./Layout.types";
 import Header from "~components/Header/Header";
 import Footer from "~components/Footer/Footer";
 
-import styles from "./Layout.module.css";
-
 const Layout: FC<LayoutProps> = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<main className={styles.layout}>{children}</main>
+			<main className="container max-w-4xl py-8 lg:py-16 px-6 xl:px-0">
+				{children}
+			</main>
 			<Footer />
 		</>
 	);

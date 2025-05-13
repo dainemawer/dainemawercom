@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import Link from "next/link";
 
-import styles from "./Header.module.css";
-
 const Header: FC = () => {
 	const [isSticky, setIsSticky] = useState(false);
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -18,7 +16,7 @@ const Header: FC = () => {
 	function handleClick() {
 		setIsDrawerOpen(!isDrawerOpen);
 		drawerRef.current?.classList.add("animating");
-		document.body.classList.toggle("drawer-open");
+		document.body.classList.toggle("overflow-hidden");
 	}
 
 	useEffect(() => {
@@ -40,7 +38,7 @@ const Header: FC = () => {
 		function handleEscapeClick(event: KeyboardEvent) {
 			if (event.key === "Escape") {
 				setIsDrawerOpen(false);
-				document.body.classList.remove("drawer-open");
+				document.body.classList.remove("overflow-hidden");
 			}
 		}
 
@@ -50,7 +48,7 @@ const Header: FC = () => {
 				!buttonRef.current?.contains(event.target as Node)
 			) {
 				setIsDrawerOpen(false);
-				document.body.classList.remove("drawer-open");
+				document.body.classList.remove("overflow-hidden");
 			}
 		}
 
@@ -73,14 +71,17 @@ const Header: FC = () => {
 	return (
 		<header
 			ref={headerRef}
-			className={classnames(styles.header, isSticky && styles.stuck)}
+			className={classnames(
+				"sticky top-0 w-full z-40",
+				isSticky && "backdrop-blur-lg border-b border-b-gray-200 bg-white/80",
+			)}
 		>
-			<div className={styles.wrap}>
-				<Link className={styles.logo} href="/">
+			<div className="flex items-center justify-between container max-w-4xl py-4 px-6 xl:px-0">
+				<Link href="/">
 					<svg
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						className="w-8 h-6 mr-4 pointer-events-none"
+						className="w-8 h-6 mr-4 pointer-events-none hover:opacity-50 focus:opacity-50 transition-opacity"
 						viewBox="0 0 39 35"
 					>
 						<path
@@ -106,7 +107,7 @@ const Header: FC = () => {
 						onClick={handleClick}
 						aria-expanded={isDrawerOpen ? "true" : "false"}
 						aria-controls="drawer"
-						className={styles.trigger}
+						className="trigger"
 						type="button"
 					>
 						<span className="sr-only">Trigger Menu</span>
@@ -115,57 +116,72 @@ const Header: FC = () => {
 						<span></span>
 						<span></span>
 					</button>
-					<div className={styles.stage}>
+					<div className="pointer-events-none lg:pointer-events-auto transition-all duration-300 fixed left-0 top-0 w-screen h-screen overflow-hidden z-30 lg:static lg:w-auto lg:h-auto lg:overflow-auto after:pointer-events-none lg:after:pointer-events-auto after:block after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-black after:opacity-0 after:will-change-auto after:z-30 stage">
 						<div
 							ref={drawerRef}
-							className={styles.drawer}
+							className={`relative transition-all duration-300 max-w-[320px] ml-auto h-full bottom-0 bg-white lg:bg-transparent w-full lg:w-auto lg:pointer-events-auto z-40 pt-6 pb-8 px-8 lg:p-0 lg:opacity-100 lg:visible lg:translate-x-0 lg:max-w-none ${
+								isDrawerOpen
+									? "pointer-events-auto visible translate-x-0 opacity-100"
+									: "invisible translate-x-[320px] opacity-0 pointer-events-none"
+							}`}
 							aria-hidden={isDrawerOpen ? "false" : "true"}
 						>
-							<p className={styles.label}>Menu</p>
-							<ul className={styles.list}>
-								<li>
+							<p className="block lg:hidden uppercase font-bold mb-8">Menu</p>
+							<ul className="flex flex-col lg:flex-row lg:items-center">
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
 									<Link
-										className={pathname === "/articles" ? styles.active : ""}
+										className={` inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 ${
+											pathname === "/articles" ? "border-slate-700" : ""
+										}`}
 										href="/articles"
 									>
 										articles
 									</Link>
 								</li>
-								<li>
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
 									<Link
-										className={pathname === "/guides" ? styles.active : ""}
+										className={` inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 ${
+											pathname === "/guides" ? "border-slate-700" : ""
+										}`}
 										href="/guides"
 									>
 										guides
 									</Link>
 								</li>
-								<li>
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
 									<Link
-										className={pathname === "/about" ? styles.active : ""}
+										className={`inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 ${
+											pathname === "/about" ? "border-slate-700" : ""
+										}`}
 										href="/about"
 									>
 										about
 									</Link>
 								</li>
-								<li>
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
 									<Link
-										className={pathname === "/uses" ? styles.active : ""}
+										className={`inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 ${
+											pathname === "/uses" ? "border-slate-700" : ""
+										}`}
 										href="/uses"
 									>
 										uses
 									</Link>
 								</li>
-								<li>
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
 									<a
-										className="button"
+										className="inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 button"
 										href="mailto:hello@dainemawer.com"
 										rel="me"
 									>
 										hello@dainemawer.com
 									</a>
 								</li>
-								<li>
-									<a className="button-inverted" href="/rss.xml">
+								<li className="mb-6 lg:mb-0 lg:mr-4 last:mr-0 text-slate-700 text-sm">
+									<a
+										className="inline-block lg:block transition-colors text-base lg:text-sm border-b-2 border-transparent hover:border-slate-700 button-inverted"
+										href="/rss.xml"
+									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
