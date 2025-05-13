@@ -3,27 +3,22 @@ import type { PostNavigationProps } from "./PostBody.types";
 
 import Link from "next/link";
 
-import styles from "./Navigation.module.css";
-
 export const PostNavigation: FC<PostNavigationProps> = ({ previous, next }) => {
 	return (
-		<nav className={styles.nav}>
+		<nav className="flex justify-between gap-4 border-t border-gray-300 pt-6 mt-6">
 			{previous && (
-				<div className={styles.item}>
-					<Link
-						className={styles.link}
-						href={`/articles/${previous.slug.current}`}
-					>
-						<span>← Older</span>
-						<h4>{previous.title}</h4>
+				<div className="flex flex-col max-w-[250px] only:max-w-full nth-2:text-right">
+					<Link href={`/articles/${previous.slug.current}`}>
+						<span className="text-sm">← Older</span>
+						<h4 className="font-bold mt-2">{previous.title}</h4>
 					</Link>
 				</div>
 			)}
 			{next && (
-				<div className={styles.item}>
-					<Link className={styles.link} href={`/articles/${next.slug.current}`}>
-						<span>Newer →</span>
-						<h4>{next.title}</h4>
+				<div className="flex flex-col max-w-[250px] only:max-w-full nth-2:text-right">
+					<Link href={`/articles/${next.slug.current}`}>
+						<span className="text-sm">Newer →</span>
+						<h4 className="font-bold mt-2">{next.title}</h4>
 					</Link>
 				</div>
 			)}

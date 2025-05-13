@@ -247,7 +247,7 @@ export default async function SinglePost({
 				<Progress />
 				<article
 					id=""
-					className={`section is-${article.category.slug.current}-page e-content`}
+					className={`prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 hover:prose-a:underline prose-a:no-underline max-w-none lg:prose-lg is-${article.category.slug.current}-page e-content`}
 					aria-label=""
 				>
 					<Breadcrumbs
@@ -272,9 +272,7 @@ export default async function SinglePost({
 								dateString={article?.publishedAt}
 							/>
 							<span className="mx-4">|</span>
-							<p className="m-0">
-								{article.estimatedReadingTime} min read
-							</p>
+							<p className="not-prose m-0">{article.estimatedReadingTime} min read</p>
 						</div>
 					</header>
 					<TableOfContents outline={outline as any} />

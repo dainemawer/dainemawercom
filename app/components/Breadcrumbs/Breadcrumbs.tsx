@@ -2,13 +2,14 @@ import type { FC } from "react";
 import type { BreadcrumbsProps } from "./Breadcrumbs.types";
 import Link from "next/link";
 
-import styles from "./Breadcrumbs.module.css";
-
 export const Breadcrumbs: FC<BreadcrumbsProps> = ({ slug, category }) => {
 	return (
 		<ol className="text-sm text-gray m-0 p-0 flex items-center list-none marker:hidden justify-center not-prose">
 			<li className="mr-2">
-				<Link className={styles.anchor} href="/">
+				<Link
+					className="hover:text-blue-600 hover:underline transition-colors focus:text-blue-600 focus:underline focus:outline-none"
+					href="/"
+				>
 					Home
 				</Link>
 			</li>
@@ -27,7 +28,10 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ slug, category }) => {
 				/>
 			</svg>
 			<li className="mr-2">
-				<Link className={styles.anchor} href="/articles">
+				<Link
+					className="hover:text-blue-600 hover:underline transition-colors focus:text-blue-600 focus:underline focus:outline-none"
+					href="/articles"
+				>
 					Articles
 				</Link>
 			</li>
@@ -48,7 +52,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ slug, category }) => {
 
 			<li>
 				<Link
-					className={`capitalize p-category ${styles.anchor}`}
+					className="capitalize p-category hover:text-blue-600 hover:underline transition-colors focus:text-blue-600 focus:underline focus:outline-none"
 					href={`/category/${category}`}
 				>
 					{category.replace("-", " ")}
