@@ -26,7 +26,7 @@ export const Progress: FC = () => {
 	return (
 		<div className="fixed z-50 w-full top-0 left-0 bg-white/5 h-2">
 			<div
-				className="origin-top-left h-2 scale-0 opacity-100 bg-gradient-to-l from-black to-black"
+				className="origin-top-left h-2 scale-0 opacity-100 bg-linear-to-l from-black to-black"
 				style={{ transform: `scale(${scroll}, 1)` }}
 				role="progressbar"
 				aria-valuenow={0}

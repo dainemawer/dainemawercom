@@ -33,7 +33,7 @@ export default function Uses() {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
 			/>
-			<section className="prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 hover:prose-a:underline prose-a:no-underline max-w-none lg:prose-lg">
+			<section className="prose prose-zinc prose-h1:leading-snug prose-h1:font-bold prose-h1:mt-8 prose-p:leading-loose prose-a:text-blue-600 prose-a:underline-offset-2 prose-a:decoration-2 prose-a:hover:underline prose-a:no-underline max-w-none lg:prose-lg">
 				<header>
 					<h1>Uses</h1>
 				</header>

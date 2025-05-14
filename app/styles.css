@@ -1,72 +1,80 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../tailwind.config.ts';
+
+@utility button {
+  a:where(&) {
+    @apply transition-colors text-sm bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded-sm;
+  }
+}
+
+@utility button-inverted {
+  a:where(&) {
+    @apply block transition-colors text-slate-700 bg-white border-2 border-black py-2 px-2 hover:bg-black hover:text-white rounded-sm;
+  }
+}
+
+@utility trigger {
+  @apply block w-[18px] h-[12px] relative rotate-0 duration-200 ease-in-out cursor-pointer lg:hidden z-50;
+
+  &:hover > span:where(:not(.sr-only)),
+  &:focus > span:where(:not(.sr-only)) {
+    @apply bg-gray-300;
+  }
+
+  &:focus > span:where(:not(.sr-only)) {
+    @apply outline-hidden;
+  }
+
+  & span:where(:not(.sr-only)) {
+    @apply block absolute h-[2px] w-full bg-black rounded-[9px] left-0 opacity-100 rotate-0 duration-200 ease-in-out;
+  }
+
+  & span:nth-child(2) {
+    @apply top-0;
+  }
+
+  & span:nth-child(3),
+  & span:nth-child(4) {
+    @apply top-[5px];
+  }
+
+  & span:nth-child(5) {
+    @apply top-[10px];
+  }
+
+  &[aria-expanded='true'] {
+    & span:nth-child(2) {
+      @apply w-0 left-1/2 top-[5px];
+    }
+
+    & span:nth-child(3) {
+      @apply rotate-45;
+    }
+
+    & span:nth-child(4) {
+      @apply -rotate-45;
+    }
+
+    & span:nth-child(5) {
+      @apply w-0 left-1/2 top-[5px];
+    }
+  }
+
+  &[aria-expanded='true'] + .stage::after {
+    @apply content-[""] pointer-events-auto opacity-30;
+  }
+}
+
+@utility stage {
+  .trigger[aria-expanded='true'] + &::after {
+    @apply content-[""] pointer-events-auto opacity-30;
+  }
+}
 
 @layer base {
 	.section *:where([id]) {
 		@apply scroll-mt-20 lg:scroll-mt-24;
-	}
-}
-
-@layer components {
-	a:where(.button) {
-		@apply transition-colors text-sm bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded;
-	}
-
-	a:where(.button-inverted) {
-		@apply block transition-colors text-slate-700 bg-white border-2 border-black py-2 px-2 hover:bg-black hover:text-white rounded;
-	}
-
-	.trigger {
-		@apply block w-[18px] h-[12px] relative rotate-0 duration-200 ease-in-out cursor-pointer lg:hidden z-50;
-
-		&:hover > span:where(:not(.sr-only)),
-		&:focus > span:where(:not(.sr-only)) {
-			@apply bg-gray-300;
-		}
-
-		&:focus > span:where(:not(.sr-only)) {
-			@apply outline-none;
-		}
-
-		& span:where(:not(.sr-only)) {
-			@apply block absolute h-[2px] w-full bg-black rounded-[9px] left-0 opacity-100 rotate-0 duration-200 ease-in-out;
-		}
-
-		& span:nth-child(2) {
-			@apply top-0;
-		}
-
-		& span:nth-child(3),
-		& span:nth-child(4) {
-			@apply top-[5px];
-		}
-
-		& span:nth-child(5) {
-			@apply top-[10px];
-		}
-
-		&[aria-expanded="true"] {
-			& span:nth-child(2) {
-				@apply w-0 left-1/2 top-[5px];
-			}
-
-			& span:nth-child(3) {
-				@apply rotate-45;
-			}
-
-			& span:nth-child(4) {
-				@apply -rotate-45;
-			}
-
-			& span:nth-child(5) {
-				@apply w-0 left-1/2 top-[5px];
-			}
-		}
-	}
-
-	.trigger[aria-expanded="true"] + .stage::after {
-		@apply content-[""] pointer-events-auto opacity-30;
 	}
 }
 

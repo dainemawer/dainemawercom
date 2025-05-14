@@ -31,7 +31,7 @@ export const Newsletter = () => {
 				<div className="flex max-w-xl mx-auto">
 					<label className="flex flex-auto mr-4" htmlFor="tlemail">
 						<input
-							className="focus:border-black transition-colors focus:outline-none text-sm border-2 border-slate-200 w-full p-2 px-4 min-h-[50px] rounded"
+							className="focus:border-black transition-colors focus:outline-hidden text-sm border-2 border-slate-200 w-full p-2 px-4 min-h-[50px] rounded-sm"
 							id="tlemail"
 							type="email"
 							placeholder="Enter your email address"
@@ -40,7 +40,7 @@ export const Newsletter = () => {
 						<input type="hidden" value="1" name="embed" />
 					</label>
 					<button
-						className="inline-block text-sm justify-center items-center transition-colors text-slate-700 bg-white border-2 border-black w-32 hover:bg-black hover:text-white rounded"
+						className="inline-block text-sm justify-center items-center transition-colors text-slate-700 bg-white border-2 border-black w-32 hover:bg-black hover:text-white rounded-sm"
 						type="submit"
 					>
 						Join
