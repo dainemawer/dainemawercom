@@ -14,11 +14,11 @@ export const Hero: FC = () => {
 			<h1 className="text-5xl lg:text-6xl font-bold leading-tight">
 				<Balancer>
 					Im Daine, an{" "}
-					<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+					<span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600">
 						Engineering Manager
 					</span>{" "}
 					and{" "}
-					<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+					<span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-500 to-blue-500">
 						Frontend Engineer
 					</span>
 					, living in South Africa 🇿🇦

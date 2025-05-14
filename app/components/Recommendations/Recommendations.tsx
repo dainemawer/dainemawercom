@@ -8,7 +8,7 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 			<h2>{title}</h2>
 			<div className="flex flex-nowrap overflow-auto gap-8">
 				<article
-					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					className="flex flex-col justify-center shrink-0 grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
 					id=""
 				>
 					<header className="flex flex-wrap items-center mb-4">
@@ -42,7 +42,7 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 					</p>
 				</article>
 				<article
-					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					className="flex flex-col justify-center shrink-0 grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
 					id=""
 				>
 					<header className="flex flex-wrap items-center mb-4">
@@ -76,7 +76,7 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 					</p>
 				</article>
 				<article
-					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					className="flex flex-col justify-center shrink-0 grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
 					id=""
 				>
 					<header className="flex flex-wrap items-center mb-4">
@@ -109,7 +109,7 @@ export const Recommendations: FC<RecommendationsProps> = ({ title }) => {
 					</p>
 				</article>
 				<article
-					className="flex flex-col justify-center flex-shrink-0 flex-grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
+					className="flex flex-col justify-center shrink-0 grow-0 max-w-sm lg:max-w-lg bg-slate-50 lg:p-8 p-6 lg:px-12"
 					id=""
 				>
 					<header className="flex flex-wrap items-center mb-4">

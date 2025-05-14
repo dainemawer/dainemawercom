@@ -15,7 +15,7 @@ export const Card: FC<CardProps> = ({
 		<article id="" aria-label="" className="relative">
 			<h3>
 				<Link
-					className="hover:text-blue-600 transition-colors focus:text-blue-600 focus:outline-none after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:block"
+					className="hover:text-blue-600 transition-colors focus:text-blue-600 focus:outline-hidden after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:block"
 					href={`/articles/${slug}`}
 				>
 					{title}

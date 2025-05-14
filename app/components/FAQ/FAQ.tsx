@@ -14,7 +14,7 @@ export const FAQ: React.FC<FAQProps> = ({ question, answer }) => {
 	return (
 		<div className="my-4 border border-gray-200 rounded-lg">
 			<button
-				className="flex items-center justify-between w-full px-4 py-3 text-left focus:outline-none"
+				className="flex items-center justify-between w-full px-4 py-3 text-left focus:outline-hidden"
 				onClick={() => setIsOpen(!isOpen)}
 				aria-expanded={isOpen}
 			>

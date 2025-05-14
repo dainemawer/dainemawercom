@@ -8,7 +8,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 
 	return (
 		<div className="flex flex-wrap items-center px-6 py-8 mb-8 bg-white border-2 border-black h-card">
-			<figure className="flex-shrink-0 mb-4 lg:mr-6 u-photo">
+			<figure className="shrink-0 mb-4 lg:mr-6 u-photo">
 				<a
 					rel="author"
 					className="u-url u-uid p-author"
@@ -23,7 +23,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 					/>
 				</a>
 			</figure>
-			<div className="flex-grow">
+			<div className="grow">
 				<p className="text-sm p-note">
 					<strong>
 						Written by <span className="p-name">Daine Mawer</span>.
@@ -91,7 +91,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 								href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
 								target="_blank"
 								rel="noreferrer"
-								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded"
+								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded-sm"
 							>
 								Facebook
 							</a>
@@ -101,7 +101,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 								href={`https://twitter.com/intent/tweet?url=${url}&text=`}
 								target="_blank"
 								rel="noreferrer"
-								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded"
+								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded-sm"
 							>
 								Twitter
 							</a>
@@ -111,7 +111,7 @@ export const AuthorBio: FC<AuthorBioProps> = ({ excerpt, title, slug }) => {
 								href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`}
 								target="_blank"
 								rel="noreferrer"
-								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded"
+								className="transition-colors bg-black border-2 border-transparent hover:border-black py-2 px-4 text-white hover:text-black hover:bg-white rounded-sm"
 							>
 								LinkedIn
 							</a>
