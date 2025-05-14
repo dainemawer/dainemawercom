@@ -126,7 +126,7 @@ const components = {
 						className="rounded-lg"
 						loading="lazy"
 						quality={85}
-						placeholder={lqip ? "blur-sm" : "empty"}
+						placeholder={lqip ? "blur" : "empty"}
 						blurDataURL={lqip}
 					/>
 					{value.caption && (
